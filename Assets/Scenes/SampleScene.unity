@@ -5326,6 +5326,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 1153961430}
   m_CeilingCheck: {fileID: 1786636126}
   m_CrouchDisableCollider: {fileID: 0}
+  doubleJumpEnabled: 1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5471,6 +5472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 705589581}
   runSpeed: 40
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
 --- !u!114 &705589588
 MonoBehaviour:
   m_ObjectHideFlags: 0
