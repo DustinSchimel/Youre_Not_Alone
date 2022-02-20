@@ -19,6 +19,9 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+	public bool doubleJumpEnabled = true;
+	private bool canDoubleJump;
+
 	[Header("Events")]
 	[Space]
 
@@ -32,6 +35,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private void Awake()
 	{
+		canDoubleJump = true;
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
 		if (OnLandEvent == null)
@@ -76,7 +80,6 @@ public class CharacterController2D : MonoBehaviour
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
 		{
-
 			// If crouching
 			if (crouch)
 			{
@@ -126,9 +129,20 @@ public class CharacterController2D : MonoBehaviour
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
-			// Add a vertical force to the player.
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			canDoubleJump = true;
+
+			// Add a vertical force to the player.
+			//m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
+		}
+		else if (jump && canDoubleJump && doubleJumpEnabled)
+		{
+			canDoubleJump = false;
+
+			// Add a vertical force to the player.
+			//m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
 		}
 	}
 
