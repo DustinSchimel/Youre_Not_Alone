@@ -284,8 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: -0.5, y: 0}
-  infiniteHorizontal: 0
+  parallaxEffectMultiplier: {x: -0.08, y: -0.05}
+  infiniteHorizontal: 1
   infiniteVertical: 0
 --- !u!212 &123065212
 SpriteRenderer:
@@ -4413,8 +4413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: -15, y: 0}
-  infiniteHorizontal: 0
+  parallaxEffectMultiplier: {x: -0.02, y: -0.03}
+  infiniteHorizontal: 1
   infiniteVertical: 0
 --- !u!212 &252317826
 SpriteRenderer:
@@ -6781,8 +6781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: -0.5, y: 0}
-  infiniteHorizontal: 0
+  parallaxEffectMultiplier: {x: -0.9, y: -0.1}
+  infiniteHorizontal: 1
   infiniteVertical: 0
 --- !u!212 &1114302404
 SpriteRenderer:
@@ -7813,8 +7813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: -0.5, y: 0}
-  infiniteHorizontal: 0
+  parallaxEffectMultiplier: {x: -1.15, y: -0.2}
+  infiniteHorizontal: 1
   infiniteVertical: 0
 --- !u!212 &1421833384
 SpriteRenderer:
