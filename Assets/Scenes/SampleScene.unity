@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: 0, y: 0}
+  parallaxEffectMultiplier: {x: -0.5, y: 0}
   infiniteHorizontal: 0
   infiniteVertical: 0
 --- !u!212 &123065212
@@ -4413,7 +4413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: 0, y: 0}
+  parallaxEffectMultiplier: {x: -0.5, y: 0}
   infiniteHorizontal: 0
   infiniteVertical: 0
 --- !u!212 &252317826
@@ -6781,7 +6781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: 0, y: 0}
+  parallaxEffectMultiplier: {x: -0.5, y: 0}
   infiniteHorizontal: 0
   infiniteVertical: 0
 --- !u!212 &1114302404
@@ -7813,7 +7813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: 0, y: 0}
+  parallaxEffectMultiplier: {x: -0.5, y: 0}
   infiniteHorizontal: 0
   infiniteVertical: 0
 --- !u!212 &1421833384
