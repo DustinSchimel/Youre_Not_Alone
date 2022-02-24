@@ -284,8 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: -0.08, y: -0.07}
-  infiniteHorizontal: 1
+  parallaxEffectMultiplier: {x: 0, y: 0}
+  infiniteHorizontal: 0
   infiniteVertical: 0
 --- !u!212 &123065212
 SpriteRenderer:
@@ -4413,8 +4413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: -0.02, y: -0.05}
-  infiniteHorizontal: 1
+  parallaxEffectMultiplier: {x: 0, y: 0}
+  infiniteHorizontal: 0
   infiniteVertical: 0
 --- !u!212 &252317826
 SpriteRenderer:
@@ -4541,7 +4541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398133072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.449911, y: 2.7019444, z: -7.0893264}
+  m_LocalPosition: {x: -9.449912, y: 2.7019444, z: -7.0893264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1171687303}
@@ -4660,7 +4660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.449911, y: 2.7019444, z: -7.0893264}
+  m_LocalPosition: {x: -9.449912, y: 2.7019444, z: -7.0893264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1346483936}
@@ -6781,7 +6781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: -0.1, y: -0.09}
+  parallaxEffectMultiplier: {x: 0, y: 0}
   infiniteHorizontal: 0
   infiniteVertical: 0
 --- !u!212 &1114302404
@@ -7813,7 +7813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6967bc374d334016a88f5818d2837633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: -1.15, y: -0.2}
+  parallaxEffectMultiplier: {x: 0, y: 0}
   infiniteHorizontal: 0
   infiniteVertical: 0
 --- !u!212 &1421833384
