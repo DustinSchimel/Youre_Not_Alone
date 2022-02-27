@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +14,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+	private TrailRenderer _trailRenderer;
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
@@ -21,6 +23,13 @@ public class CharacterController2D : MonoBehaviour
 
 	public bool doubleJumpEnabled = true;
 	private bool canDoubleJump;
+
+	[Header("Dashing")]
+	[SerializeField] private float _dashingVelocity = 14f;
+	[SerializeField] private float _dashingTime = 0.5f;
+	private Vector2 _dashingDir;
+	private bool _isDashing;
+	private bool _canDash = true;
 
 	[Header("Events")]
 	[Space]
@@ -37,6 +46,8 @@ public class CharacterController2D : MonoBehaviour
 	{
 		canDoubleJump = true;
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		_trailRenderer = GetComponent<TrailRenderer>();
+
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -65,7 +76,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump)
+	public void Move(float move, bool crouch, bool jump, bool dash)
 	{
 		// If crouching, check to see if the character can stand up
 		if (crouch)
@@ -136,7 +147,7 @@ public class CharacterController2D : MonoBehaviour
 			//m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
 		}
-		else if (jump && canDoubleJump && doubleJumpEnabled)
+		if (jump && canDoubleJump && doubleJumpEnabled)
 		{
 			canDoubleJump = false;
 
@@ -144,8 +155,34 @@ public class CharacterController2D : MonoBehaviour
 			//m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
 		}
+		if (dash && _canDash)
+		{
+			_isDashing = true;
+			_canDash = false;
+			_trailRenderer.emitting = true;
+			_dashingDir = new Vector2(move, Input.GetAxisRaw("Vertical"));
+			if (_dashingDir == Vector2.zero)
+			{
+				_dashingDir = new Vector2(transform.localScale.x, 0);
+			}
+			StartCoroutine(StopDashing());
+		}
+		if (_isDashing)
+		{
+			m_Rigidbody2D.velocity = _dashingDir.normalized * _dashingVelocity;
+		}
+		if (m_Grounded)
+		{
+			_canDash = true;
+		}
 	}
 
+	private IEnumerator StopDashing()
+    {
+		yield return new WaitForSeconds(_dashingTime);
+		_trailRenderer.emitting = false;
+		_isDashing = false;
+    }
 
 	private void Flip()
 	{

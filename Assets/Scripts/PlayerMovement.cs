@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+    bool dash = false;
 
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
@@ -37,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
             crouch = true;
             Debug.Log("Crouching");
         }
+        if(Input.GetButtonDown("Dash"))
+        {
+            dash = true;
+        }
         else if (Input.GetButtonUp("Crouch"))
         {
             crouch = false;
@@ -55,7 +60,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash);
+        dash = false;
         jump = false;
     }
 }
