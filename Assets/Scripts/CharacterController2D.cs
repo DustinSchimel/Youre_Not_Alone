@@ -147,7 +147,7 @@ public class CharacterController2D : MonoBehaviour
 			//m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
 		}
-		if (jump && canDoubleJump && doubleJumpEnabled)
+		else if (jump && canDoubleJump && doubleJumpEnabled)
 		{
 			canDoubleJump = false;
 
@@ -171,7 +171,7 @@ public class CharacterController2D : MonoBehaviour
 		{
 			m_Rigidbody2D.velocity = _dashingDir.normalized * _dashingVelocity;
 		}
-		if (m_Grounded)
+		if (m_Grounded && !_isDashing)
 		{
 			_canDash = true;
 		}
@@ -180,6 +180,7 @@ public class CharacterController2D : MonoBehaviour
 	private IEnumerator StopDashing()
     {
 		yield return new WaitForSeconds(_dashingTime);
+		m_Rigidbody2D.velocity = Vector2.zero;
 		_trailRenderer.emitting = false;
 		_isDashing = false;
     }
