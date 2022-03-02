@@ -5527,7 +5527,7 @@ MonoBehaviour:
   m_CrouchDisableCollider: {fileID: 0}
   doubleJumpEnabled: 1
   _dashingVelocity: 25
-  _dashingTime: 0.1
+  _dashingTime: 0.3
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
