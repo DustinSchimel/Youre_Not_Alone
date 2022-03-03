@@ -34,6 +34,19 @@ public class CharacterController2D : MonoBehaviour
 	private bool _canDash = true;
 	private Vector2 oldVelocity;
 
+	[Header("Walljumping")]
+	[SerializeField] private float wallSlideSpeed = 0;
+	[SerializeField] private LayerMask m_WhatIsWall;                          // A mask determining what is ground to the character
+	[SerializeField] private Transform m_WallCheck;                           // A position marking where to check if the player is grounded.
+	const float k_WallRadius = .2f; // Radius of the overlap circle to determine if grounded
+	private bool isTouchingWall;
+	private bool isWallSliding;
+	[SerializeField] private float xWallForce;
+	[SerializeField] private float yWallForce;
+	[SerializeField] private float wallJumpTime;
+
+	private bool wallJumping;
+
 	[Header("Events")]
 	[Space]
 
@@ -76,6 +89,22 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+
+		isTouchingWall = Physics2D.OverlapCircle(m_WallCheck.position, k_WallRadius, m_WhatIsWall);
+
+		if(isTouchingWall && !m_Grounded && Input.GetAxisRaw("Horizontal") != 0)
+        {
+			isWallSliding = true;
+        }
+        else
+        {
+			isWallSliding = false;
+        }
+
+        if (isWallSliding)
+        {
+			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, Mathf.Clamp(m_Rigidbody2D.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }
 	}
 
 
@@ -181,6 +210,17 @@ public class CharacterController2D : MonoBehaviour
 			_canDash = true;
 			hasDoubleJumped = false;
 		}
+
+		if(isWallSliding && jump)
+        {
+			wallJumping = true;
+			Invoke("StopWallJumping", wallJumpTime);	
+        }
+
+        if (wallJumping)
+        {
+			m_Rigidbody2D.velocity = new Vector2(xWallForce * -move, yWallForce);
+        }
 	}
 
 	private IEnumerator StopDashing(Vector2 dashingDir)
@@ -222,4 +262,9 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+	private void StopWallJumping()
+    {
+		wallJumping = false;
+    }
 }
