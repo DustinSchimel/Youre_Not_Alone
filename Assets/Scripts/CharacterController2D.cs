@@ -41,9 +41,9 @@ public class CharacterController2D : MonoBehaviour
 	const float k_WallRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool isTouchingWall;
 	private bool isWallSliding;
-	[SerializeField] private float xWallForce;
-	[SerializeField] private float yWallForce;
-	[SerializeField] private float wallJumpTime;
+	[SerializeField] private float WallJumpForce;
+	[SerializeField] private float wallJumpDirection = -1f;
+	[SerializeField] private Vector2 wallJumpAngle;
 
 	private bool wallJumping;
 
@@ -63,6 +63,7 @@ public class CharacterController2D : MonoBehaviour
 		canDoubleJump = true;
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		_trailRenderer = GetComponent<TrailRenderer>();
+		wallJumpAngle.Normalize();
 
 
 		if (OnLandEvent == null)
@@ -92,7 +93,7 @@ public class CharacterController2D : MonoBehaviour
 
 		isTouchingWall = Physics2D.OverlapCircle(m_WallCheck.position, k_WallRadius, m_WhatIsWall);
 
-		if(isTouchingWall && !m_Grounded && Input.GetAxisRaw("Horizontal") != 0)
+		if(isTouchingWall && !m_Grounded && m_Rigidbody2D.velocity.y < 0)
         {
 			isWallSliding = true;
         }
@@ -211,16 +212,10 @@ public class CharacterController2D : MonoBehaviour
 			hasDoubleJumped = false;
 		}
 
-		if(isWallSliding && jump)
-        {
-			wallJumping = true;
-			Invoke("StopWallJumping", wallJumpTime);	
-        }
-
-        if (wallJumping)
-        {
-			m_Rigidbody2D.velocity = new Vector2(xWallForce * -move, yWallForce);
-        }
+		if (isWallSliding && jump)
+		{
+			m_Rigidbody2D.AddForce(new Vector2(WallJumpForce * wallJumpDirection * wallJumpAngle.x, WallJumpForce * wallJumpAngle.y), ForceMode2D.Impulse);
+		}
 	}
 
 	private IEnumerator StopDashing(Vector2 dashingDir)
@@ -261,10 +256,6 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+		wallJumpDirection *= -1;
 	}
-
-	private void StopWallJumping()
-    {
-		wallJumping = false;
-    }
 }
