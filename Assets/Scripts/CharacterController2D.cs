@@ -23,13 +23,16 @@ public class CharacterController2D : MonoBehaviour
 
 	public bool doubleJumpEnabled = true;
 	private bool canDoubleJump;
+	private bool hasDoubleJumped = false;
 
 	[Header("Dashing")]
 	[SerializeField] private float _dashingVelocity = 14f;
 	[SerializeField] private float _dashingTime = 0.5f;
+	[SerializeField] private float _dashingFloatiness = 7.5f;
 	private Vector2 _dashingDir;
 	private bool _isDashing;
 	private bool _canDash = true;
+	private Vector2 oldVelocity;
 
 	[Header("Events")]
 	[Space]
@@ -150,6 +153,7 @@ public class CharacterController2D : MonoBehaviour
 		else if (jump && canDoubleJump && doubleJumpEnabled)
 		{
 			canDoubleJump = false;
+			hasDoubleJumped = true;
 
 			// Add a vertical force to the player.
 			//m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
@@ -157,6 +161,7 @@ public class CharacterController2D : MonoBehaviour
 		}
 		if (dash && _canDash)
 		{
+			oldVelocity = m_Rigidbody2D.velocity;
 			_isDashing = true;
 			_canDash = false;
 			_trailRenderer.emitting = true;
@@ -165,7 +170,7 @@ public class CharacterController2D : MonoBehaviour
 			{
 				_dashingDir = new Vector2(transform.localScale.x, 0);
 			}
-			StartCoroutine(StopDashing());
+			StartCoroutine(StopDashing(_dashingDir));
 		}
 		if (_isDashing)
 		{
@@ -174,13 +179,35 @@ public class CharacterController2D : MonoBehaviour
 		if (m_Grounded && !_isDashing)
 		{
 			_canDash = true;
+			hasDoubleJumped = false;
 		}
 	}
 
-	private IEnumerator StopDashing()
+	private IEnumerator StopDashing(Vector2 dashingDir)
     {
 		yield return new WaitForSeconds(_dashingTime);
-		m_Rigidbody2D.velocity = Vector2.zero;
+		dashingDir.Normalize();
+		//This block of code adds velocity to the character after a dash to gove them some hang time in the air.
+		if (dashingDir.y > 0)
+		{
+			if (dashingDir.x != 0)
+			{
+				m_Rigidbody2D.velocity = new Vector2(oldVelocity.x, _dashingFloatiness);
+			}
+			else
+            {
+				m_Rigidbody2D.velocity = new Vector2(0, _dashingFloatiness);
+			}
+		}
+		else if (dashingDir.y == 0)
+        {
+			m_Rigidbody2D.velocity = new Vector2(oldVelocity.x + _dashingFloatiness, 0);
+		}
+
+        if (!hasDoubleJumped)
+        {
+			canDoubleJump = true;
+        }
 		_trailRenderer.emitting = false;
 		_isDashing = false;
     }
