@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,60 +9,64 @@ public class PlayerMovement : MonoBehaviour
 
     public float runSpeed = 40f;
 
-    float horizontalMove = 0f;
     bool jump = false;
-    bool crouch = false;
     bool dash = false;
 
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
+    private PlayerInput playerInput;
+    private PlayerInputActions playerInputActions;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerInput = GetComponent<PlayerInput>();
+
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Enable();
+        playerInputActions.Player.Jump.performed += Jump;
+        playerInputActions.Player.Dash.performed += Dash;
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
+
+        controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash);
+        dash = false;
+        jump = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-        }
-
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
-            Debug.Log("Crouching");
-        }
-        if(Input.GetButtonDown("Dash"))
-        {
-            dash = true;
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
-        }
-
         // Better jumping related stuff
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        else if (rb.velocity.y > 0 && !jump) // originally was !Input.GetButton("Jump")
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 
-    private void FixedUpdate()
+    public void Jump(InputAction.CallbackContext context)
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, dash);
-        dash = false;
-        jump = false;
+        if (context.performed)  // true if the button was just hit
+        {
+            jump = true;
+        }
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.performed)  // true if the button was just hit
+        {
+            dash = true;
+        }
     }
 }
