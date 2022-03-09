@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - DeathZone
+  - Enemy
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground/Wall
   - Water
   - UI
   - 
