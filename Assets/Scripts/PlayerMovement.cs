@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
 
     public float runSpeed = 40f;
+    private Vector2 respawnPoint;
+
+    RespawnPointHolder respawnScript;
 
     bool jump = false;
     bool dash = false;
@@ -22,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        respawnPoint = transform.position;
+
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -67,6 +72,19 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)  // true if the button was just hit
         {
             dash = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "DeathZone")
+        {
+            transform.position = respawnPoint;
+        }
+        else if (collision.tag == "CheckPoint")
+        {
+            respawnScript = collision.gameObject.GetComponent<RespawnPointHolder>();
+            respawnPoint = respawnScript.getPoint();
         }
     }
 }
