@@ -132,7 +132,7 @@ public class CharacterController2D : MonoBehaviour
 			//m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
 		}
-		else if (jump && canDoubleJump && doubleJumpEnabled)
+		else if (jump && canDoubleJump && doubleJumpEnabled && !isTouchingWall)
 		{
 			canDoubleJump = false;
 			hasDoubleJumped = true;
@@ -156,6 +156,7 @@ public class CharacterController2D : MonoBehaviour
 		}
 		if (_isDashing)
 		{
+			canDoubleJump = false;
 			m_Rigidbody2D.velocity = _dashingDir.normalized * _dashingVelocity;
 		}
 		if (m_Grounded && !_isDashing)
