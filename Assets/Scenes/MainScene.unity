@@ -7127,6 +7127,7 @@ MonoBehaviour:
     m_Bits: 31
   m_GroundCheck: {fileID: 1153961430}
   doubleJumpEnabled: 1
+  dashEnabled: 1
   _dashingVelocity: 25
   _dashingTime: 0.3
   _dashingFloatiness: 10
