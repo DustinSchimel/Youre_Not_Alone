@@ -17,9 +17,12 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
-	public bool doubleJumpEnabled = true;
 	private bool canDoubleJump;
 	private bool hasDoubleJumped = false;
+
+	[Header("Toggles")]
+	public bool doubleJumpEnabled = true;
+	public bool dashEnabled = true;
 
 	[Header("Dashing")]
 	[SerializeField] private float _dashingVelocity = 14f;
@@ -140,7 +143,7 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
 		}
-		if (dash && _canDash)
+		if (dash && _canDash && dashEnabled)
 		{
 			oldVelocity = m_Rigidbody2D.velocity;
 			_isDashing = true;
