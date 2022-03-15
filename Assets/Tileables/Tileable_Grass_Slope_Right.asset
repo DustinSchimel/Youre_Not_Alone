@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Tileable_Ground_01_Monochrome
+  m_Name: Tileable_Grass_Slope_Right
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: bf3836ac84cc86749b6cce7338288468, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b08e055e5c4a1a4583aa74eea2fb5e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
