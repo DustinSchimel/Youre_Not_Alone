@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        SoundManager.Initialize();  // Maybe move this to a more apropriate place later
+
         respawnPoint = transform.position;
 
         rb = GetComponent<Rigidbody2D>();
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
 
-        controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash);
+        controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash, inputVector.x);
         dash = false;
         jump = false;
     }

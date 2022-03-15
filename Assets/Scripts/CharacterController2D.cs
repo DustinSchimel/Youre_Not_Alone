@@ -102,8 +102,12 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, float vertical, bool jump, bool dash)
+	public void Move(float move, float vertical, bool jump, bool dash, float isMoving)
 	{
+		if (m_Grounded && isMoving != 0)	// Player is moving
+        {
+			SoundManager.PlaySound(SoundManager.Sound.PlayerMoveGrass);
+		}
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
 		{
@@ -128,6 +132,8 @@ public class CharacterController2D : MonoBehaviour
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
+			SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
+
 			m_Grounded = false;
 			canDoubleJump = true;
 
@@ -137,14 +143,20 @@ public class CharacterController2D : MonoBehaviour
 		}
 		else if (jump && canDoubleJump && doubleJumpEnabled && !isTouchingWall)
 		{
+			SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
+
 			canDoubleJump = false;
 			hasDoubleJumped = true;
 
 			// Add a vertical force to the player.
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
 		}
+
 		if (dash && _canDash && dashEnabled)
 		{
+			dash = false;
+			SoundManager.PlaySound(SoundManager.Sound.PlayerDash);
+
 			oldVelocity = m_Rigidbody2D.velocity;
 			_isDashing = true;
 			_canDash = false;
