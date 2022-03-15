@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         SoundManager.Initialize();  // Maybe move this to a more apropriate place later
+        SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
+        SoundManager.PlaySound(SoundManager.Sound.AmbientNoise);
 
         respawnPoint = transform.position;
 

@@ -28,6 +28,12 @@ public static class SoundManager
         {
             GameObject soundGameObject = new GameObject("Sound");
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+
+            if (sound == Sound.BackgroundMusic || sound == Sound.AmbientNoise)
+            {
+                audioSource.loop = true;
+            }
+
             audioSource.volume = 0.1f;
             audioSource.PlayOneShot(GetAudioClip(sound));
         }
