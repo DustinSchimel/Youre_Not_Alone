@@ -20,6 +20,8 @@ public class CharacterController2D : MonoBehaviour
 	private bool canDoubleJump;
 	private bool hasDoubleJumped = false;
 
+	public Animator animator;
+
 	[Header("Toggles")]
 	public bool doubleJumpEnabled = true;
 	public bool dashEnabled = true;
@@ -129,6 +131,9 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 		}
+
+		animator.SetFloat("Speed", Mathf.Abs(isMoving));
+
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{

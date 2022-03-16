@@ -64016,6 +64016,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 31
   m_GroundCheck: {fileID: 1153961430}
+  animator: {fileID: 1628557399}
   doubleJumpEnabled: 1
   dashEnabled: 1
   _dashingVelocity: 25
