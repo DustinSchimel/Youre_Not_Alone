@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 respawnPoint;
 
     RespawnPointHolder respawnScript;
+    public Text checkpointText;
 
     bool jump = false;
     bool dash = false;
@@ -18,13 +20,18 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
+    CollectibleTally collectibleScript;
+    bool inCollectible = false;
+    GameObject collectible = null;
+
     private Rigidbody2D rb;
-    private PlayerInput playerInput;
     private PlayerInputActions playerInputActions;
 
 
     private void Awake()
     {
+        checkpointText.enabled = false;
+
         SoundManager.Initialize();  // Maybe move this to a more apropriate place later
         SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
         SoundManager.PlaySound(SoundManager.Sound.AmbientNoise);
@@ -32,12 +39,12 @@ public class PlayerMovement : MonoBehaviour
         respawnPoint = transform.position;
 
         rb = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Dash.performed += Dash;
+        playerInputActions.Player.Interact.performed += Interact;
     }
 
     private void FixedUpdate()
@@ -79,6 +86,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (inCollectible)
+        {
+            collectible.SetActive(false);
+
+            if (collectible.name == "Merchant_Cup")
+            {
+                collectibleScript = rb.gameObject.GetComponent<CollectibleTally>();
+                collectibleScript.setMerchantCup(true);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "DeathZone")
@@ -89,6 +110,29 @@ public class PlayerMovement : MonoBehaviour
         {
             respawnScript = collision.gameObject.GetComponent<RespawnPointHolder>();
             respawnPoint = respawnScript.getPoint();
+
+            checkpointText.enabled = true;
+            StartCoroutine(Coroutine());
         }
+        else if (collision.tag == "Collectible")
+        {
+            inCollectible = true;
+            collectible = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Collectible")
+        {
+            inCollectible = false;
+        }
+    }
+
+    IEnumerator Coroutine()
+    {
+        yield return new WaitForSeconds(4f);
+
+        checkpointText.enabled = false;
     }
 }
