@@ -9,6 +9,7 @@ TagManager:
   - CheckPoint
   - MerchantCup
   - Collectible
+  - Teleporter
   layers:
   - Default
   - TransparentFX
