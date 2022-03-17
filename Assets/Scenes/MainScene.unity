@@ -56932,7 +56932,7 @@ GameObject:
   - component: {fileID: 316025015}
   - component: {fileID: 316025016}
   - component: {fileID: 316025017}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Checkpoint 2
   m_TagString: CheckPoint
   m_Icon: {fileID: 0}
@@ -59460,7 +59460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 805635630}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CheckPoints
   m_TagString: CheckPoint
   m_Icon: {fileID: 0}
@@ -66117,7 +66117,7 @@ GameObject:
   - component: {fileID: 2038280744}
   - component: {fileID: 2038280745}
   - component: {fileID: 2038280746}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Checkpoint 1
   m_TagString: CheckPoint
   m_Icon: {fileID: 0}
