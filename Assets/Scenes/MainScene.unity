@@ -64019,7 +64019,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 1153961430}
   animator: {fileID: 1628557399}
   doubleJumpEnabled: 0
-  dashEnabled: 0
+  dashEnabled: 1
   _dashingVelocity: 25
   _dashingTime: 0.3
   _dashingFloatiness: 10
