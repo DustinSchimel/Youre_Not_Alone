@@ -64017,8 +64017,8 @@ MonoBehaviour:
     m_Bits: 31
   m_GroundCheck: {fileID: 1153961430}
   animator: {fileID: 1628557399}
-  doubleJumpEnabled: 1
-  dashEnabled: 1
+  doubleJumpEnabled: 0
+  dashEnabled: 0
   _dashingVelocity: 25
   _dashingTime: 0.3
   _dashingFloatiness: 10
