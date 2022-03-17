@@ -7,14 +7,25 @@ public class PlayerTeleporter : MonoBehaviour
 {
     private GameObject currentTeleporter;
 
-    // Update is called once per frame
+    CharacterController2D controller;
 
+    private void Awake()
+    {
+        controller = this.gameObject.GetComponent<CharacterController2D>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision) 
     {
+        GameObject tp = collision.gameObject;
+
         if (collision.CompareTag("Teleporter"))
         {
-                transform.position = collision.gameObject.GetComponent<Teleporter>().GetDestination().position;      
+            if (tp.name == "Teleporter1")
+            {
+                controller.doubleJumpEnabled = true;
+            }
+
+            transform.position = collision.gameObject.GetComponent<Teleporter>().GetDestination().position;      
         }
     }
 }
