@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
+    public Animator animator;
 
     public float runSpeed = 40f;
     private Vector2 respawnPoint;
@@ -75,7 +76,13 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)  // true if the button was just hit
         {
             jump = true;
+            animator.SetBool("IsJumping", true);
         }
+    }
+
+    public void UponLanding () //jumping animation call
+    {
+        animator.SetBool("IsJumping", false);
     }
 
     public void Dash(InputAction.CallbackContext context)

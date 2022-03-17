@@ -132,7 +132,7 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 
-		animator.SetFloat("Speed", Mathf.Abs(isMoving));
+		animator.SetFloat("Speed", Mathf.Abs(isMoving)); // ilde and walk animation
 
 		// If the player should jump...
 		if (m_Grounded && jump)
