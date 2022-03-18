@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     RespawnPointHolder respawnScript;
     public Text checkpointText;
+    string lastCheckpointReached;
 
     bool jump = false;
     bool dash = false;
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        lastCheckpointReached = "";
         checkpointText.enabled = false;
 
         SoundManager.Initialize();  // Maybe move this to a more apropriate place later
@@ -77,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
             //animator.SetBool("IsJumping", true);
-            Debug.Log("Jumped");
+            //Debug.Log("Jumped");
         }
     }
 
@@ -118,8 +120,13 @@ public class PlayerMovement : MonoBehaviour
         {
             respawnScript = collision.gameObject.GetComponent<RespawnPointHolder>();
             respawnPoint = respawnScript.getPoint();
+            
+            if (!lastCheckpointReached.Equals(collision.gameObject.name))   // If the last checkpoint reached is not the same as the last one reached
+            {
+                checkpointText.enabled = true;
+                lastCheckpointReached = collision.gameObject.name;  // Set it as the last checkpoint reached
+            }
 
-            checkpointText.enabled = true;
             StartCoroutine(Coroutine());
         }
         else if (collision.tag == "Collectible")
