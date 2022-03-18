@@ -76,13 +76,14 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)  // true if the button was just hit
         {
             jump = true;
-            animator.SetBool("IsJumping", true);
+            //animator.SetBool("IsJumping", true);
+            Debug.Log("Jumped");
         }
     }
 
     public void UponLanding () //jumping animation call
     {
-        animator.SetBool("IsJumping", false);
+        //animator.SetBool("IsJumping", false);
     }
 
     public void Dash(InputAction.CallbackContext context)

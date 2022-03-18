@@ -83,6 +83,8 @@ public class CharacterController2D : MonoBehaviour
 				m_Grounded = true;
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
+				animator.SetBool("IsJumping", false);
+				canDoubleJump = true;
 			}
 		}
 
@@ -140,11 +142,10 @@ public class CharacterController2D : MonoBehaviour
 			SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
 
 			m_Grounded = false;
-			canDoubleJump = true;
 
 			// Add a vertical force to the player.
-			//m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
+			StartCoroutine(StartJumpAnimation());
 		}
 		else if (jump && canDoubleJump && doubleJumpEnabled && !isTouchingWall)
 		{
@@ -155,6 +156,7 @@ public class CharacterController2D : MonoBehaviour
 
 			// Add a vertical force to the player.
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
+			StartCoroutine(StartJumpAnimation());
 		}
 
 		if (dash && _canDash && dashEnabled)
@@ -230,5 +232,12 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 		wallJumpDirection *= -1;
+	}
+
+	private IEnumerator StartJumpAnimation()
+	{
+		yield return new WaitForSeconds(0.5f);
+
+		animator.SetBool("IsJumping", true);
 	}
 }
