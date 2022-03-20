@@ -236,8 +236,10 @@ public class CharacterController2D : MonoBehaviour
 
 	private IEnumerator StartJumpAnimation()
 	{
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.01f);
 
 		animator.SetBool("IsJumping", true);
 	}
+
+	
 }
