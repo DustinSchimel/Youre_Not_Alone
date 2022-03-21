@@ -116,6 +116,10 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = respawnPoint;
         }
+        else if (collision.tag == "Enemy")
+        {
+            transform.position = respawnPoint;
+        }
         else if (collision.tag == "CheckPoint")
         {
             respawnScript = collision.gameObject.GetComponent<RespawnPointHolder>();

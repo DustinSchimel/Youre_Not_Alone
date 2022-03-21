@@ -36,6 +36,7 @@ public class CharacterController2D : MonoBehaviour
 	private Vector2 oldVelocity;
 
 	[Header("Walljumping")]
+	[SerializeField] private bool wallJumpEnabled = true;
 	[SerializeField] private float wallSlideSpeed = 0;
 	[SerializeField] private LayerMask m_WhatIsWall;                          // A mask determining what is ground to the character
 	[SerializeField] private Transform m_WallCheck;                           // A position marking where to check if the player is grounded.
@@ -90,7 +91,7 @@ public class CharacterController2D : MonoBehaviour
 
 		isTouchingWall = Physics2D.OverlapCircle(m_WallCheck.position, k_WallRadius, m_WhatIsWall);
 
-		if(isTouchingWall && !m_Grounded && m_Rigidbody2D.velocity.y < 0)
+		if(isTouchingWall && !m_Grounded && m_Rigidbody2D.velocity.y < 0 && wallJumpEnabled)
         {
 			isWallSliding = true;
         }
