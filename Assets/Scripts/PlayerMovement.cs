@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = respawnPoint;
         }
-        else if (collision.tag == "Enemy")
+        else if (collision.tag == "Enemy" || collision.tag == "Projectile")
         {
             transform.position = respawnPoint;
         }

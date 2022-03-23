@@ -10,6 +10,7 @@ TagManager:
   - MerchantCup
   - Collectible
   - Teleporter
+  - Projectile
   layers:
   - Default
   - TransparentFX
