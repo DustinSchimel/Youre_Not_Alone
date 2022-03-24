@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
+    private TrailRenderer trail;
 
     public float runSpeed = 40f;
     private Vector2 respawnPoint;
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         respawnPoint = transform.position;
 
         rb = GetComponent<Rigidbody2D>();
+        trail = GetComponent<TrailRenderer>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
@@ -114,10 +116,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.tag == "DeathZone")
         {
+            trail.emitting = false;
             transform.position = respawnPoint;
         }
         else if (collision.tag == "Enemy" || collision.tag == "Projectile")
         {
+            trail.emitting = false;
             transform.position = respawnPoint;
         }
         else if (collision.tag == "CheckPoint")
