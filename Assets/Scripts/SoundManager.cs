@@ -35,6 +35,12 @@ public static class SoundManager
             }
 
             audioSource.volume = 0.1f;
+
+            if (PauseMenu.gameIsPaused)
+            {
+                audioSource.pitch *= 0.5f;
+            }
+
             audioSource.PlayOneShot(GetAudioClip(sound));
         }
     }
