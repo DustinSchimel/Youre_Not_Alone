@@ -1,0 +1,23 @@
+title: Start
+tags: 
+colorID: 0
+position: 842,215
+---
+Merchant: What're you doing over here?
+[[I'm not sure myself|text2]]
+[[I need to be here|text3]]
+===
+title: text2
+tags: 
+colorID: 0
+position: 639,506
+---
+Merchant: I might be able to help
+===
+title: text3
+tags: 
+colorID: 0
+position: 1032,503
+---
+Merchant: What for?
+===

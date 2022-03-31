@@ -195,7 +195,7 @@
       }
     },
     "dev.yarnspinner.unity": {
-      "version": "2.1.0",
+      "version": "1.2.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {

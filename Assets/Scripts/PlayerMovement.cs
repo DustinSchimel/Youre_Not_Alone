@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,9 +33,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInputActions playerInputActions;
 
+    private DialogueRunner dialogueRunner = null;
+    private DialogueControls dialogueControls = null;
+    private float interactionRadius = 10f;
+
+    public GameObject scriptHolder;
+
 
     private void Awake()
     {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        //dialogueControls = FindObjectOfType<DialogueControls>();
+        dialogueControls = scriptHolder.GetComponent<DialogueControls>();
+
         //pauseScript = this.gameObject.GetComponent<PauseScript>;//collision.gameObject.GetComponent<RespawnPointHolder>();
         pauseScript = this.gameObject.GetComponent<PauseMenu>();
 
@@ -56,15 +67,28 @@ public class PlayerMovement : MonoBehaviour
         playerInputActions.Player.Dash.performed += Dash;
         playerInputActions.Player.Interact.performed += Interact;
         playerInputActions.Player.Pause.performed += Pause;
+
+        playerInputActions.Dialogue.MoveLeft.performed += MoveLeft;
+        playerInputActions.Dialogue.MoveRight.performed += MoveRight;
+        playerInputActions.Dialogue.Skip.performed += Skip;
+        playerInputActions.Dialogue.SelectOption.performed += SelectOption;
     }
 
     private void FixedUpdate()
     {
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
 
-        controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash, inputVector.x);
-        dash = false;
-        jump = false;
+        if (!dialogueRunner.IsDialogueRunning)  // Player is not currently talking, so they can move
+        {
+            controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash, inputVector.x);
+            dash = false;
+            jump = false;
+        }
+        else
+        {
+            playerInputActions.Player.Disable();
+            playerInputActions.Dialogue.Enable();
+        }
     }
 
     // Update is called once per frame
@@ -116,6 +140,29 @@ public class PlayerMovement : MonoBehaviour
                 collectibleScript.setMerchantCup(true);
             }
         }
+        else
+        {
+            CheckForNearbyNPC();
+        }
+    }
+
+    /// Find all DialogueParticipants
+    /** Filter them to those that have a Yarn start node and are in range; 
+     * then start a conversation with the first one
+     */
+    public void CheckForNearbyNPC()
+    {
+        var allParticipants = new List<NPC>(FindObjectsOfType<NPC>()); // Retrieves all NPC in the scene
+        var player = FindObjectOfType<PlayerMovement>(); // Retrieves the player in the scene
+        var target = allParticipants.Find(delegate (NPC p) { // Returns the NPC
+            return string.IsNullOrEmpty(p.talkToNode) == false && // has a conversation node?
+            (p.transform.position - player.transform.position).magnitude <= interactionRadius; // is in range?
+        });
+        if (target != null)
+        {
+            // Kick off the dialogue at this node.
+            dialogueRunner.StartDialogue(target.talkToNode);
+        }
     }
 
     public void Pause(InputAction.CallbackContext context)
@@ -126,7 +173,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    public void MoveLeft(InputAction.CallbackContext context)
+    {
+        if (context.performed)  // true if the button was just hit
+        {
+            dialogueControls.ChangeOption("Left");
+        }
+    }
+
+    public void MoveRight(InputAction.CallbackContext context)
+    {
+        if (context.performed)  // true if the button was just hit
+        {
+            dialogueControls.ChangeOption("Right");
+        }
+    }
+
+    public void Skip(InputAction.CallbackContext context)
+    {
+        if (context.performed)  // true if the button was just hit
+        {
+            dialogueControls.SkipDialogue();
+        }
+    }
+
+    public void SelectOption(InputAction.CallbackContext context)
+    {
+        if (context.performed)  // true if the button was just hit
+        {
+            dialogueControls.SelectOption();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "DeathZone")
         {

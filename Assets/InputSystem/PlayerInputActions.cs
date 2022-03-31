@@ -328,6 +328,133 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dialogue"",
+            ""id"": ""dac9b518-0a58-46b3-ad0c-7796e772116e"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""adf69b3b-91eb-4961-a161-9bc8c70849b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a4d849f-7522-4650-86c5-d331bfe7da3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b6b9416-e00c-4ca2-a953-be3fa6cd32ad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectOption"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc7b327b-fa4a-4cd5-a190-785bfba2bde7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9fa1d962-28a7-4e90-bf15-5df42d9a7ff5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b149f6d-c577-43c4-810b-4e999a312d88"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71d1f350-634f-41aa-8da9-d35422d47927"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MoveRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d79a30c-c606-421b-adc8-d463731e022a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c67e36a5-3306-467a-b69d-55e42280b849"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SelectOption"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Pause"",
+            ""id"": ""d3f653a5-749f-44b2-803b-393278ecdf37"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec968d48-f5f4-4c87-820d-39b6406d4663"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""337d5112-f54d-4246-9860-ff547acaaf42"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -362,6 +489,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        // Dialogue
+        m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
+        m_Dialogue_MoveLeft = m_Dialogue.FindAction("MoveLeft", throwIfNotFound: true);
+        m_Dialogue_MoveRight = m_Dialogue.FindAction("MoveRight", throwIfNotFound: true);
+        m_Dialogue_Skip = m_Dialogue.FindAction("Skip", throwIfNotFound: true);
+        m_Dialogue_SelectOption = m_Dialogue.FindAction("SelectOption", throwIfNotFound: true);
+        // Pause
+        m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
+        m_Pause_Newaction = m_Pause.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -482,6 +618,96 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Dialogue
+    private readonly InputActionMap m_Dialogue;
+    private IDialogueActions m_DialogueActionsCallbackInterface;
+    private readonly InputAction m_Dialogue_MoveLeft;
+    private readonly InputAction m_Dialogue_MoveRight;
+    private readonly InputAction m_Dialogue_Skip;
+    private readonly InputAction m_Dialogue_SelectOption;
+    public struct DialogueActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DialogueActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MoveLeft => m_Wrapper.m_Dialogue_MoveLeft;
+        public InputAction @MoveRight => m_Wrapper.m_Dialogue_MoveRight;
+        public InputAction @Skip => m_Wrapper.m_Dialogue_Skip;
+        public InputAction @SelectOption => m_Wrapper.m_Dialogue_SelectOption;
+        public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DialogueActions set) { return set.Get(); }
+        public void SetCallbacks(IDialogueActions instance)
+        {
+            if (m_Wrapper.m_DialogueActionsCallbackInterface != null)
+            {
+                @MoveLeft.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnMoveLeft;
+                @MoveLeft.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnMoveLeft;
+                @MoveLeft.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnMoveLeft;
+                @MoveRight.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnMoveRight;
+                @MoveRight.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnMoveRight;
+                @MoveRight.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnMoveRight;
+                @Skip.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSkip;
+                @Skip.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSkip;
+                @Skip.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSkip;
+                @SelectOption.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSelectOption;
+                @SelectOption.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSelectOption;
+                @SelectOption.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSelectOption;
+            }
+            m_Wrapper.m_DialogueActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @MoveLeft.started += instance.OnMoveLeft;
+                @MoveLeft.performed += instance.OnMoveLeft;
+                @MoveLeft.canceled += instance.OnMoveLeft;
+                @MoveRight.started += instance.OnMoveRight;
+                @MoveRight.performed += instance.OnMoveRight;
+                @MoveRight.canceled += instance.OnMoveRight;
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
+                @SelectOption.started += instance.OnSelectOption;
+                @SelectOption.performed += instance.OnSelectOption;
+                @SelectOption.canceled += instance.OnSelectOption;
+            }
+        }
+    }
+    public DialogueActions @Dialogue => new DialogueActions(this);
+
+    // Pause
+    private readonly InputActionMap m_Pause;
+    private IPauseActions m_PauseActionsCallbackInterface;
+    private readonly InputAction m_Pause_Newaction;
+    public struct PauseActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public PauseActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Pause_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Pause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseActions set) { return set.Get(); }
+        public void SetCallbacks(IPauseActions instance)
+        {
+            if (m_Wrapper.m_PauseActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_PauseActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public PauseActions @Pause => new PauseActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -507,5 +733,16 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IDialogueActions
+    {
+        void OnMoveLeft(InputAction.CallbackContext context);
+        void OnMoveRight(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
+        void OnSelectOption(InputAction.CallbackContext context);
+    }
+    public interface IPauseActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }
