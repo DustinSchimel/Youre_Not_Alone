@@ -11,14 +11,13 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        inputActions = new PlayerInputActions();
+        //inputActions = new PlayerInputActions();
     }
 
     public void Pause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Debug.Log("fefefe");
             if (gameIsPaused)
             {
                 Resume();

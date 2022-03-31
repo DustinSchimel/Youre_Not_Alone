@@ -318,7 +318,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""58c7e4b3-99e8-4b04-9809-2889cc4abb7b"",
+                    ""id"": ""c07076fb-4352-468b-b34e-583e16115275"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",

@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
     private Vector2 respawnPoint;
 
+    PauseMenu pauseScript;
+
     RespawnPointHolder respawnScript;
     public Text checkpointText;
     string lastCheckpointReached;
@@ -33,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        //pauseScript = this.gameObject.GetComponent<PauseScript>;//collision.gameObject.GetComponent<RespawnPointHolder>();
+        pauseScript = this.gameObject.GetComponent<PauseMenu>();
+
         lastCheckpointReached = "";
         checkpointText.enabled = false;
 
@@ -50,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Dash.performed += Dash;
         playerInputActions.Player.Interact.performed += Interact;
+        playerInputActions.Player.Pause.performed += Pause;
     }
 
     private void FixedUpdate()
@@ -112,7 +118,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.performed)  // true if the button was just hit
+        {
+            pauseScript.Pause(context);
+        }
+    }
+
+        private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "DeathZone")
         {
