@@ -43,24 +43,32 @@ public class DialogueMover : MonoBehaviour
 
     private void SetDialoguePosition(GameObject character)
     {
-        float characterSpriteHeight;
+        float x;
+        float y;
 
         if (character.name.Equals("Merch"))
         {
-            characterSpriteHeight = character.transform.position.y;
+            x = character.transform.position.x - 1;
+            y = character.transform.position.y + 6.8f;
+
+        }
+        else if (character.name.Equals("Character Body"))
+        {
+            x = character.transform.position.x;
+            y = character.transform.position.y + 5.7f;
         }
         else
         {
-            characterSpriteHeight = character.transform.position.y;
+            x = character.transform.position.x - 1;
+            y = character.transform.position.y + 6.8f;
         }
 
         // Retrieve the position where the top part of the sprite is in the world
         //float characterSpriteHeight = character.GetComponent<SpriteRenderer>().sprite.bounds.extents.y;
 
         // Create position with the sprite top location
-        Vector3 characterPosition = new Vector3(character.transform.position.x,
-                                                characterSpriteHeight,
-                                                character.transform.position.z);
+        Vector2 characterPosition = new Vector2(x,
+                                                y);
 
         // Set the DialogueBubble position to the sprite top location in Screen Space
         this.transform.position = cam.WorldToScreenPoint(characterPosition);

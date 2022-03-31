@@ -80,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!dialogueRunner.IsDialogueRunning)  // Player is not currently talking, so they can move
         {
+            playerInputActions.Player.Enable();
             controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash, inputVector.x);
             dash = false;
             jump = false;
@@ -88,6 +89,8 @@ public class PlayerMovement : MonoBehaviour
         {
             playerInputActions.Player.Disable();
             playerInputActions.Dialogue.Enable();
+            //rb.velocity = Vector2.zero;
+            //rb.angularVelocity = Vector2.zero;
         }
     }
 
