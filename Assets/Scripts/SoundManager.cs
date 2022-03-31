@@ -34,6 +34,11 @@ public static class SoundManager
                 audioSource.loop = true;
             }
 
+            if(sound == Sound.AmbientNoise && CaveBarrier.inCave == true)
+            {
+                audioSource.loop = false;
+            }
+
             audioSource.volume = 0.1f;
 
             if (PauseMenu.gameIsPaused)
@@ -41,7 +46,15 @@ public static class SoundManager
                 audioSource.pitch *= 0.5f;
             }
 
-            audioSource.PlayOneShot(GetAudioClip(sound));
+            if(sound == Sound.AmbientNoise && CaveBarrier.inCave == true )
+            {
+
+            }
+            else
+            {
+                audioSource.PlayOneShot(GetAudioClip(sound));
+            }
+                
         }
     }
 

@@ -11,6 +11,7 @@ TagManager:
   - Collectible
   - Teleporter
   - Projectile
+  - CaveEntrance
   layers:
   - Default
   - TransparentFX
