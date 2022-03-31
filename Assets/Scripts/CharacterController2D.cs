@@ -4,11 +4,11 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
-	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
-	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
-	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
+	[SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
+	[Range(0, .3f)][SerializeField] private float m_MovementSmoothing = .05f;   // How much to smooth out the movement
+	[SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
+	[SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
+	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private TrailRenderer _trailRenderer;
@@ -91,26 +91,26 @@ public class CharacterController2D : MonoBehaviour
 
 		isTouchingWall = Physics2D.OverlapCircle(m_WallCheck.position, k_WallRadius, m_WhatIsWall);
 
-		if(isTouchingWall && !m_Grounded && m_Rigidbody2D.velocity.y < 0 && wallJumpEnabled)
-        {
+		if (isTouchingWall && !m_Grounded && m_Rigidbody2D.velocity.y < 0 && wallJumpEnabled)
+		{
 			isWallSliding = true;
-        }
-        else
-        {
+		}
+		else
+		{
 			isWallSliding = false;
-        }
+		}
 
-        if (isWallSliding)
-        {
+		if (isWallSliding)
+		{
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, Mathf.Clamp(m_Rigidbody2D.velocity.y, -wallSlideSpeed, float.MaxValue));
-        }
+		}
 	}
 
 
 	public void Move(float move, float vertical, bool jump, bool dash, float isMoving)
 	{
-		if (m_Grounded && isMoving != 0)	// Player is moving
-        {
+		if (m_Grounded && isMoving != 0)    // Player is moving
+		{
 			SoundManager.PlaySound(SoundManager.Sound.PlayerMoveGrass);
 		}
 		//only control the player if grounded or airControl is turned on
@@ -181,11 +181,13 @@ public class CharacterController2D : MonoBehaviour
 		{
 			canDoubleJump = false;
 			m_Rigidbody2D.velocity = _dashingDir.normalized * _dashingVelocity;
+			StartCoroutine(StartDashAnimation());
 		}
 		if (m_Grounded && !_isDashing)
 		{
 			_canDash = true;
 			hasDoubleJumped = false;
+			StartCoroutine(StopDashAnimation());
 		}
 
 		if (isWallSliding && jump)
@@ -195,7 +197,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 	private IEnumerator StopDashing(Vector2 dashingDir)
-    {
+	{
 		yield return new WaitForSeconds(_dashingTime);
 		dashingDir.Normalize();
 		//This block of code adds velocity to the character after a dash to gove them some hang time in the air.
@@ -206,22 +208,22 @@ public class CharacterController2D : MonoBehaviour
 				m_Rigidbody2D.velocity = new Vector2(oldVelocity.x, _dashingFloatiness);
 			}
 			else
-            {
+			{
 				m_Rigidbody2D.velocity = new Vector2(0, _dashingFloatiness);
 			}
 		}
 		else if (dashingDir.y == 0)
-        {
+		{
 			m_Rigidbody2D.velocity = new Vector2(oldVelocity.x + _dashingFloatiness, 0);
 		}
 
-        if (!hasDoubleJumped)
-        {
+		if (!hasDoubleJumped)
+		{
 			canDoubleJump = true;
-        }
+		}
 		_trailRenderer.emitting = false;
 		_isDashing = false;
-    }
+	}
 
 	private void Flip()
 	{
@@ -242,5 +244,16 @@ public class CharacterController2D : MonoBehaviour
 		animator.SetBool("IsJumping", true);
 	}
 
-	
+	private IEnumerator StartDashAnimation()
+	{
+		yield return new WaitForSeconds(0.01f);
+
+		animator.SetBool("IsDashing", true);
+	}
+	private IEnumerator StopDashAnimation()
+	{
+		yield return new WaitForSeconds(0.01f);
+
+		animator.SetBool("IsDashing", false);
+	}
 }
