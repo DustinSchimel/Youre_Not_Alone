@@ -50,7 +50,6 @@ namespace Yarn.Unity
     public class DialogueUI2 : Yarn.Unity.DialogueUIBehaviour
     {
         private string textUntrimmed;
-
         /// <summary>
         /// The object that contains the dialogue and the options.
         /// </summary>

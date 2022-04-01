@@ -351,6 +351,17 @@
             "bindings": [
                 {
                     "name": "",
+                    "id": "d89e6ad9-9691-46f9-91c1-0f41929e15cf",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9fa1d962-28a7-4e90-bf15-5df42d9a7ff5",
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
@@ -368,6 +379,28 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08f80d8a-8ad1-45a9-9bad-b32cae355196",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c506e5e9-5e1e-4202-8be9-eefac52923e1",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MoveRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -395,8 +428,19 @@
                 },
                 {
                     "name": "",
+                    "id": "1d10b46a-6369-4148-98a6-7d48760af2e1",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5d79a30c-c606-421b-adc8-d463731e022a",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -417,8 +461,19 @@
                 },
                 {
                     "name": "",
+                    "id": "ef11c59a-a36e-47f5-8472-a15edbed3493",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c67e36a5-3306-467a-b69d-55e42280b849",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -433,6 +488,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "SelectOption",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed144b42-8c50-437d-a0f3-d6fcbecd9503",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
                     "action": "SelectOption",
                     "isComposite": false,
                     "isPartOfComposite": false

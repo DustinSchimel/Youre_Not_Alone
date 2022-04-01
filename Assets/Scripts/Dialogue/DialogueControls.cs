@@ -33,28 +33,9 @@ public class DialogueControls : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        ControlOptions();
-    }
-
-    private void ControlOptions()
-    {
-        if (isOptionDisplayed)
-        {
-            //ChangeOption("");   //THIS was empty before
-            //SelectOption();
-        }
-        else
-        {
-            //SkipDialogue();
-        }
-    }
-
     public void ChangeOption(string input)
     {
-        if (optionSize != 0)
+        if (isOptionDisplayed)
         {
             if (input.Equals("Left"))
             {
@@ -76,28 +57,19 @@ public class DialogueControls : MonoBehaviour
 
     public void SkipDialogue()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!isOptionDisplayed)
         {
             dialogueUI.MarkLineComplete();
         }
-        */
-
-        dialogueUI.MarkLineComplete();
     }
 
     public void SelectOption()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (isOptionDisplayed)
         {
             dialogueUI.SelectOption(currentOption);
             ResetCurrentOption();
         }
-        */
-
-        dialogueUI.SelectOption(currentOption);
-        ResetCurrentOption();
     }
 
     private void ResetCurrentOption()
