@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private DialogueRunner dialogueRunner = null;
     private DialogueControls dialogueControls = null;
-    private float interactionRadius = 10f;
+    private float interactionRadius = 5f;
 
     public GameObject scriptHolder;
 
@@ -87,10 +87,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            playerInputActions.Player.Disable();
-            playerInputActions.Dialogue.Enable();
-            //rb.velocity = Vector2.zero;
-            //rb.angularVelocity = Vector2.zero;
+            controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash, 0);  // Stops the moving animation for the player
+            rb.velocity = new Vector2(0f, rb.velocity.y);   // Stops the players horizontal velocity once they enter dialogue
+
+            playerInputActions.Player.Disable();    // Disables player movement
+            playerInputActions.Dialogue.Enable();   // Enables dialogue controls
         }
     }
 
