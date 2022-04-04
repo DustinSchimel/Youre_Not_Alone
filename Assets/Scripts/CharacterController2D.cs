@@ -21,6 +21,7 @@ public class CharacterController2D : MonoBehaviour
 	private bool hasDoubleJumped = false;
 
 	public Animator animator;
+	public AudioManager audioPlayer;
 
 	[Header("Toggles")]
 	public bool doubleJumpEnabled = true;
@@ -63,13 +64,19 @@ public class CharacterController2D : MonoBehaviour
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		_trailRenderer = GetComponent<TrailRenderer>();
 		wallJumpAngle.Normalize();
-
+		audioPlayer = AudioManager.instance;
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 	}
 
-	private void FixedUpdate()
+    private void Start()
+    {
+		audioPlayer.PlaySound("BGM");
+		audioPlayer.PlaySound("Wind");
+	}
+
+    private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
@@ -111,7 +118,7 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (m_Grounded && isMoving != 0)    // Player is moving
 		{
-			SoundManager.PlaySound(SoundManager.Sound.PlayerMoveGrass);
+			audioPlayer.PlaySound("Walking (Grass)");
 		}
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
@@ -140,7 +147,8 @@ public class CharacterController2D : MonoBehaviour
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
-			SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
+			audioPlayer.PlaySound("Jump");
+
 
 			m_Grounded = false;
 
@@ -150,7 +158,7 @@ public class CharacterController2D : MonoBehaviour
 		}
 		else if (jump && canDoubleJump && doubleJumpEnabled && !isTouchingWall)
 		{
-			SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
+			audioPlayer.PlaySound("Jump");
 
 			canDoubleJump = false;
 			hasDoubleJumped = true;
@@ -163,7 +171,7 @@ public class CharacterController2D : MonoBehaviour
 		if (dash && _canDash && dashEnabled)
 		{
 			dash = false;
-			SoundManager.PlaySound(SoundManager.Sound.PlayerDash);
+			audioPlayer.PlaySound("Dash");
 
 			oldVelocity = m_Rigidbody2D.velocity;
 			_isDashing = true;

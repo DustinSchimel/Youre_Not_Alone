@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject scriptHolder;
 
+    public AudioManager audioPlayer;
+
+
 
     private void Awake()
     {
@@ -52,9 +55,7 @@ public class PlayerMovement : MonoBehaviour
         lastCheckpointReached = "";
         checkpointText.enabled = false;
 
-        SoundManager.Initialize();  // Maybe move this to a more apropriate place later
-        SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
-        SoundManager.PlaySound(SoundManager.Sound.AmbientNoise);
+        audioPlayer = AudioManager.instance;        
 
         respawnPoint = transform.position;
 
@@ -72,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
         playerInputActions.Dialogue.MoveRight.performed += MoveRight;
         playerInputActions.Dialogue.Skip.performed += Skip;
         playerInputActions.Dialogue.SelectOption.performed += SelectOption;
+
+        
     }
 
     private void FixedUpdate()
@@ -113,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)  // true if the button was just hit
         {
+            
             jump = true;
             //animator.SetBool("IsJumping", true);
             //Debug.Log("Jumped");
