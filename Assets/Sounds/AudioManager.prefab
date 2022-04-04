@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Walking (Grass)
-    clip: {fileID: 8300000, guid: 9cb63d9e04a3e0043ab0fe457665c61e, type: 3}
+    clip: {fileID: 8300000, guid: 1847a253a40a1864894241e00094f1f4, type: 3}
     volume: 0.1
     pitch: 1
     loop: 0
