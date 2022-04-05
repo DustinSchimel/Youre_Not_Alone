@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 78aa75e6aa072d84bb95a37b5fb0c85f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs:
+  - Merchant_After_Cutscene-Start-0
+  - Merchant_After_Cutscene-Start-1
+  - Merchant_After_Cutscene-Start-2
+  - Merchant_After_Cutscene-Start-3
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
+  localizations: []

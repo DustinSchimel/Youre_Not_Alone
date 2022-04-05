@@ -1,0 +1,55 @@
+fileFormatVersion: 2
+guid: c422d8f2011926d469a6191fe3442efc
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs:
+  - Merchant_Cutscene-Start-0
+  - Merchant_Cutscene-Start-1
+  - Merchant_Cutscene-Start-2
+  - Merchant_Cutscene-Choice01-3
+  - Merchant_Cutscene-Choice02-4
+  - Merchant_Cutscene-Cut01-5
+  - Merchant_Cutscene-Cut02-6
+  - Merchant_Cutscene-Choice03-7
+  - Merchant_Cutscene-Choice04-8
+  - Merchant_Cutscene-Choice05-9
+  - Merchant_Cutscene-C301-10
+  - Merchant_Cutscene-C302-11
+  - Merchant_Cutscene-C302-12
+  - Merchant_Cutscene-C303-13
+  - Merchant_Cutscene-Cut03-14
+  - Merchant_Cutscene-C401-15
+  - Merchant_Cutscene-C402-16
+  - Merchant_Cutscene-C403-17
+  - Merchant_Cutscene-C403-18
+  - Merchant_Cutscene-C403-19
+  - Merchant_Cutscene-C304-20
+  - Merchant_Cutscene-C501-21
+  - Merchant_Cutscene-C502-22
+  - Merchant_Cutscene-C503-23
+  - Merchant_Cutscene-C503-24
+  - Merchant_Cutscene-C503-25
+  - Merchant_Cutscene-C503-26
+  - Merchant_Cutscene-C504-27
+  - Merchant_Cutscene-C505-28
+  - Merchant_Cutscene-Cut04-29
+  - Merchant_Cutscene-Cut06-30
+  - Merchant_Cutscene-Cut07-31
+  - Merchant_Cutscene-Cut08-32
+  - Merchant_Cutscene-Cut09-33
+  - Merchant_Cutscene-Cut09-34
+  - Merchant_Cutscene-Cut09-35
+  - Merchant_Cutscene-Cut09-36
+  - Merchant_Cutscene-Cut09-37
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
+  localizations: []

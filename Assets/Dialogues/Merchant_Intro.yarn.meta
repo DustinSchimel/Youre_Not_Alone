@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 3982d67c96cff0b45a2eecb805ae1580
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs:
+  - Merchant_Intro-Start-0
+  - Merchant_Intro-Intro_Dialog-1
+  - Merchant_Intro-Intro_Dialog-2
+  - Merchant_Intro-Intro_Dialog-3
+  - Merchant_Intro-Intro_Dialog02-4
+  - Merchant_Intro-Intro_Dialog03-5
+  - Merchant_Intro-Intro_Dialog04-6
+  - Merchant_Intro-Intro_Dialog05-7
+  - Merchant_Intro-Intro_Dialog06-8
+  - Merchant_Intro-Intro_Dialog07-9
+  - Merchant_Intro-Intro_Dialog08-10
+  - Merchant_Intro-Intro_Dialog09-11
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
+  localizations: []
