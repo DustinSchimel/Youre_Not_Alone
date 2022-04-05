@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Yarn.Unity;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //public CinemachineVirtualCamera cam;
+
     public CharacterController2D controller;
     public Animator animator;
     private TrailRenderer trail;
@@ -73,8 +76,7 @@ public class PlayerMovement : MonoBehaviour
         playerInputActions.Dialogue.MoveRight.performed += MoveRight;
         playerInputActions.Dialogue.Skip.performed += Skip;
         playerInputActions.Dialogue.SelectOption.performed += SelectOption;
-
-        
+        playerInputActions.Dialogue.EndDialogue.performed += EndDialogue;
     }
 
     private void FixedUpdate()
@@ -83,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!dialogueRunner.IsDialogueRunning)  // Player is not currently talking, so they can move
         {
+            //cam.
             playerInputActions.Player.Enable();
             controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash, inputVector.x);
             dash = false;
@@ -210,6 +213,14 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)  // true if the button was just hit
         {
             dialogueControls.SelectOption();
+        }
+    }
+
+    public void EndDialogue(InputAction.CallbackContext context)
+    {
+        if (context.performed)  // true if the button was just hit
+        {
+            //dialogueControls.EndDialogue();
         }
     }
 

@@ -48,19 +48,19 @@ public class DialogueMover : MonoBehaviour
 
         if (character.name.Equals("Merch"))
         {
-            x = character.transform.position.x - 1;
-            y = character.transform.position.y + 6.8f;
+            x = character.transform.position.x + 1;
+            y = character.transform.position.y + 7.5f;
 
         }
         else if (character.name.Equals("Character Body"))
         {
             x = character.transform.position.x;
-            y = character.transform.position.y + 5.7f;
+            y = character.transform.position.y + 6.45f;
         }
         else
         {
-            x = character.transform.position.x - 1;
-            y = character.transform.position.y + 6.8f;
+            x = character.transform.position.x + 1;
+            y = character.transform.position.y + 7.5f;
         }
 
         // Retrieve the position where the top part of the sprite is in the world

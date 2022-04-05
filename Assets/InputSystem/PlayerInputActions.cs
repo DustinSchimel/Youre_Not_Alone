@@ -368,6 +368,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EndDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d1fa2e1-d931-4614-9a56-d6aff7f114ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -524,6 +533,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""SelectOption"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b5b2d9c-7668-4e75-8956-46a561132923"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""EndDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3c36349-95cd-4d62-ba02-2368130e61f7"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""EndDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -594,6 +625,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Dialogue_MoveRight = m_Dialogue.FindAction("MoveRight", throwIfNotFound: true);
         m_Dialogue_Skip = m_Dialogue.FindAction("Skip", throwIfNotFound: true);
         m_Dialogue_SelectOption = m_Dialogue.FindAction("SelectOption", throwIfNotFound: true);
+        m_Dialogue_EndDialogue = m_Dialogue.FindAction("EndDialogue", throwIfNotFound: true);
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_Newaction = m_Pause.FindAction("New action", throwIfNotFound: true);
@@ -725,6 +757,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Dialogue_MoveRight;
     private readonly InputAction m_Dialogue_Skip;
     private readonly InputAction m_Dialogue_SelectOption;
+    private readonly InputAction m_Dialogue_EndDialogue;
     public struct DialogueActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -733,6 +766,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @MoveRight => m_Wrapper.m_Dialogue_MoveRight;
         public InputAction @Skip => m_Wrapper.m_Dialogue_Skip;
         public InputAction @SelectOption => m_Wrapper.m_Dialogue_SelectOption;
+        public InputAction @EndDialogue => m_Wrapper.m_Dialogue_EndDialogue;
         public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -754,6 +788,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @SelectOption.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSelectOption;
                 @SelectOption.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSelectOption;
                 @SelectOption.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSelectOption;
+                @EndDialogue.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnEndDialogue;
+                @EndDialogue.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnEndDialogue;
+                @EndDialogue.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnEndDialogue;
             }
             m_Wrapper.m_DialogueActionsCallbackInterface = instance;
             if (instance != null)
@@ -770,6 +807,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @SelectOption.started += instance.OnSelectOption;
                 @SelectOption.performed += instance.OnSelectOption;
                 @SelectOption.canceled += instance.OnSelectOption;
+                @EndDialogue.started += instance.OnEndDialogue;
+                @EndDialogue.performed += instance.OnEndDialogue;
+                @EndDialogue.canceled += instance.OnEndDialogue;
             }
         }
     }
@@ -839,6 +879,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnMoveRight(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
         void OnSelectOption(InputAction.CallbackContext context);
+        void OnEndDialogue(InputAction.CallbackContext context);
     }
     public interface IPauseActions
     {

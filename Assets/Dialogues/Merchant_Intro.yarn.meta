@@ -11,17 +11,27 @@ ScriptedImporter:
   baseLanguageID: 
   stringIDs:
   - Merchant_Intro-Start-0
-  - Merchant_Intro-Intro_Dialog-1
-  - Merchant_Intro-Intro_Dialog-2
+  - Merchant_Intro-Start-1
+  - Merchant_Intro-Start-2
   - Merchant_Intro-Intro_Dialog-3
-  - Merchant_Intro-Intro_Dialog02-4
-  - Merchant_Intro-Intro_Dialog03-5
-  - Merchant_Intro-Intro_Dialog04-6
-  - Merchant_Intro-Intro_Dialog05-7
-  - Merchant_Intro-Intro_Dialog06-8
-  - Merchant_Intro-Intro_Dialog07-9
-  - Merchant_Intro-Intro_Dialog08-10
-  - Merchant_Intro-Intro_Dialog09-11
+  - Merchant_Intro-Intro_Dialog-4
+  - Merchant_Intro-Intro_Dialog-5
+  - Merchant_Intro-Intro_Dialog-6
+  - Merchant_Intro-Intro_Dialog-7
+  - Merchant_Intro-Intro_Dialog-8
+  - Merchant_Intro-Intro_Dialog02-9
+  - Merchant_Intro-Intro_Dialog02-10
+  - Merchant_Intro-Intro_Dialog03-11
+  - Merchant_Intro-Intro_Dialog04-12
+  - Merchant_Intro-Intro_Dialog05-13
+  - Merchant_Intro-Intro_Dialog06-14
+  - Merchant_Intro-Intro_Dialog06-15
+  - Merchant_Intro-Intro_Dialog07-16
+  - Merchant_Intro-Intro_Dialog08-17
+  - Merchant_Intro-Intro_Dialog08-18
+  - Merchant_Intro-Intro_Dialog08-19
+  - Merchant_Intro-Intro_Dialog08-20
+  - Merchant_Intro-Intro_Dialog09-21
   compilationStatus: 1
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 

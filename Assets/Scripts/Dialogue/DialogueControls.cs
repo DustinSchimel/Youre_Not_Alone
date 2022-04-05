@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class DialogueControls : MonoBehaviour
 {
+    public DialogueRunner runner;
+
     [SerializeField] private TMPro.TMP_Text dialogue = null;
 
     private DialogueUI2 dialogueUI = null;
@@ -20,6 +22,8 @@ public class DialogueControls : MonoBehaviour
         isOptionDisplayed = false;
         // Get a reference to the DialogueUI
         dialogueUI = FindObjectOfType<DialogueUI2>();
+        // Get a reference to the DialogueRunner
+        runner = FindObjectOfType<DialogueRunner>();
         // Save the number of options available
         optionSize = dialogueUI.optionButtons.Count;
         // Initialize the current index
@@ -70,6 +74,11 @@ public class DialogueControls : MonoBehaviour
             dialogueUI.SelectOption(currentOption);
             ResetCurrentOption();
         }
+    }
+
+    public void EndDialogue()
+    {
+        runner.Stop();
     }
 
     private void ResetCurrentOption()
