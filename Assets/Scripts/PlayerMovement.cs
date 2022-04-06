@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject scriptHolder;
 
-    public AudioManager audioPlayer;
+    //public AudioManager audioPlayer;
 
 
 
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         lastCheckpointReached = "";
         checkpointText.enabled = false;
 
-        audioPlayer = AudioManager.instance;        
+        //audioPlayer = AudioManager.instance;        
 
         respawnPoint = transform.position;
 
