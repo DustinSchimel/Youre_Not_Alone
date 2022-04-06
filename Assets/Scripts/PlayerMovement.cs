@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
+    DialogueEventsManager dialogueEventsScript;
     CollectibleTally collectibleScript;
     bool inCollectible = false;
     GameObject collectible = null;
@@ -147,8 +148,10 @@ public class PlayerMovement : MonoBehaviour
 
             if (collectible.name == "Merchant_Cup")
             {
-                collectibleScript = rb.gameObject.GetComponent<CollectibleTally>();
-                collectibleScript.setMerchantCup(true);
+                //collectibleScript = rb.gameObject.GetComponent<CollectibleTally>();
+                dialogueEventsScript = rb.gameObject.GetComponent<DialogueEventsManager>();
+                //collectibleScript.setMerchantCup(true);
+                dialogueEventsScript.setMerchantCup(true);
             }
         }
         else

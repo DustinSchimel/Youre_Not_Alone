@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 103e72ccc4cd8354483915566bb38f12
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs:
+  - Merchant_cutscene_intro_check-Start2-0
+  - Merchant_cutscene_intro_check-Start2-1
+  - Merchant_cutscene_intro_check-Start2-2
+  - Merchant_cutscene_intro_check-Choice02-3
+  - Merchant_cutscene_intro_check-Choice01-4
+  - Merchant_cutscene_intro_check-Choice01-5
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {fileID: 7128917941130120860, guid: 103e72ccc4cd8354483915566bb38f12, type: 3}
+  localizations: []
