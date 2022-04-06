@@ -10,10 +10,12 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
   baseLanguageID: en-US
   stringIDs:
-  - Merchant_After_Cutscene-Start-0
-  - Merchant_After_Cutscene-Start-1
-  - Merchant_After_Cutscene-Start-2
-  - Merchant_After_Cutscene-Start-3
+  - Merchant_After_Cutscene-Start3-0
+  - Merchant_After_Cutscene-Start3-1
+  - Merchant_After_Cutscene-Start3-2
+  - Merchant_After_Cutscene-Start3-3
+  - Merchant_After_Cutscene-Start3-4
+  - Merchant_After_Cutscene-Start3-5
   compilationStatus: 1
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 

@@ -25,9 +25,23 @@ public class DialogueControls : MonoBehaviour
         // Get a reference to the DialogueRunner
         runner = FindObjectOfType<DialogueRunner>();
         // Save the number of options available
-        optionSize = dialogueUI.optionButtons.Count;
+        //optionSize = dialogueUI.optionButtons.Count;
+        optionSize = 2;
         // Initialize the current index
         currentOption = 0;
+        // Initialize the array size to the number of options
+        options = new TMPro.TMP_Text[optionSize];
+        // Get the TextMeshPro Text components from the option buttons in the DialogueUI 
+        for (int i = 0; i < optionSize; i++)
+        {
+            options[i] = dialogueUI.optionButtons[i].GetComponentInChildren<TMPro.TMP_Text>();
+        }
+    }
+
+    public void SetOptions(int optionCount)
+    {
+        optionSize = optionCount;
+
         // Initialize the array size to the number of options
         options = new TMPro.TMP_Text[optionSize];
         // Get the TextMeshPro Text components from the option buttons in the DialogueUI 

@@ -58,6 +58,12 @@ public class DialogueMover : MonoBehaviour
             y = character.transform.position.y + 7.5f;
 
         }
+        else if (character.name.Equals("Merch3"))
+        {
+            x = character.transform.position.x - 0;
+            y = character.transform.position.y + 7.5f;
+
+        }
         else if (character.name.Contains("Character Body"))
         {
             x = character.transform.position.x;
