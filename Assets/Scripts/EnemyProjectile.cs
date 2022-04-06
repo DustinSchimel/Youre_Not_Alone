@@ -14,7 +14,14 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Die();
+        if (collision.tag == "Projectile")
+        {
+
+        }
+        else
+        {
+            Die();
+        }
     }
 
     // Update is called once per frame

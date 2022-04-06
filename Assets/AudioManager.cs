@@ -147,13 +147,11 @@ public class AudioManager : MonoBehaviour
         float playerMoveTimerMax = 0.543f;
         if (lastTimePlayed + playerMoveTimerMax < Time.time)
         {
-            Debug.Log("2");
             soundTimerDictionary[sound] = Time.time;
             return true;
         }
         else
         {
-            Debug.Log("3");
             return false;
         }
     }
