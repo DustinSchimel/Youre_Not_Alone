@@ -12,6 +12,8 @@ TagManager:
   - Teleporter
   - Projectile
   - CaveEntrance
+  - DialogueTo3
+  - DialogueTo2
   layers:
   - Default
   - TransparentFX

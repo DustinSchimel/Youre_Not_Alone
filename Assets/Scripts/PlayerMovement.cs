@@ -177,6 +177,10 @@ public class PlayerMovement : MonoBehaviour
             // Kick off the dialogue at this node.
             dialogueRunner.StartDialogue(target.talkToNode);
         }
+        else
+        {
+            Debug.Log("No target in range");
+        }
     }
 
     public void Pause(InputAction.CallbackContext context)
@@ -256,6 +260,14 @@ public class PlayerMovement : MonoBehaviour
         {
             inCollectible = true;
             collectible = collision.gameObject;
+        }
+        else if (collision.tag == "DialogueTo3")
+        {
+            dialogueControls.SetOptions(3);
+        }
+        else if (collision.tag == "DialogueTo2")
+        {
+            dialogueControls.SetOptions(2);
         }
     }
 

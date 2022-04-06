@@ -25,7 +25,11 @@ public class PlayerTeleporter : MonoBehaviour
                 controller.doubleJumpEnabled = true;
             }
 
-            transform.position = collision.gameObject.GetComponent<Teleporter>().GetDestination().position;
+            var position = collision.gameObject.GetComponent<Teleporter>().GetDestination().position;
+            float x = position.x;
+            float y = position.y;
+
+            transform.position = new Vector2(x, y);
         }
     }
 }

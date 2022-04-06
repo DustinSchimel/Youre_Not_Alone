@@ -8,8 +8,11 @@ public class DialogueEventsManager : MonoBehaviour
 {
     public DialogueRunner dr;
     private DialogueUI2 dialogueUI;
-    private DialogueControls dialogueControls;
+    public DialogueControls dialogueControls;
     public GameObject Timeline_Merch;
+
+    public GameObject merch;
+    public GameObject merch0;
     public GameObject merch2;
     public GameObject merch3;
 
@@ -23,7 +26,7 @@ public class DialogueEventsManager : MonoBehaviour
     private void Awake()
     {
         dialogueUI = FindObjectOfType<DialogueUI2>();
-        dialogueControls = FindObjectOfType<DialogueControls>();
+        //dialogueControls = FindObjectOfType<DialogueControls>();
         cam = Camera.main;
         merchantCupImage.enabled = false;
     }
@@ -31,14 +34,15 @@ public class DialogueEventsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //string[] dsakl = new string[1]; // enable these two strings to skip intro dialogue
-        //enableTeleporter0(dsakl);
-
         dr.AddCommandHandler("enable_teleporter0", enableTeleporter0);
 
         dr.AddCommandHandler("startFirstCutscene", startFirstCutscene);
 
         dr.AddCommandHandler("endFirstCutscene", endFirstCutscene);
+
+        dr.AddCommandHandler("setOptionCountTo3", setOptionCountTo3);
+
+        dr.AddCommandHandler("setOptionCountTo2", setOptionCountTo3);
 
         dr.AddFunction("checkObtainedCup", 1, delegate (Yarn.Value[] parameters)
         {
@@ -58,17 +62,18 @@ public class DialogueEventsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void enableTeleporter0(string[] arr)
     {
         teleporter0.SetActive(true);
+        merch.SetActive(false);
+        merch0.SetActive(true);
     }
 
     private void startFirstCutscene(string[] arr)
     {
-        dialogueControls.SetOptions(3);
         Timeline_Merch.SetActive(true);
     }
 
@@ -76,9 +81,18 @@ public class DialogueEventsManager : MonoBehaviour
     {
         merch3.SetActive(false);
         merch2.SetActive(true);
-        dialogueControls.SetOptions(2);
+        //dialogueControls.SetOptions(2);
         Timeline_Merch.SetActive(false);
+    }
 
+    public void setOptionCountTo3(string[] arr)
+    {
+        dialogueControls.SetOptions(3);
+    }
+
+    public void setOptionCountTo2(string[] arr)
+    {
+        dialogueControls.SetOptions(2);
     }
 
     public void setMerchantCup(bool value)

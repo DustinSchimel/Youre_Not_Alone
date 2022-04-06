@@ -1,7 +1,7 @@
 title: Cut01
 tags: 
 colorID: 0
-position: 3365,388
+position: 3365,386
 ---
 ... Nothing’s wrong. I think I may be a little bit tired, that’s all.
 [[Cut02]]
@@ -202,6 +202,7 @@ tags:
 colorID: 0
 position: 8475,643
 ---
+<<setOptionCountTo2>>
 Merch3: That is very kind C. Your words flatter me to no end. Oho!
 Merch3: ... But. I am not nearly as perfect as you think I am. Recently, my wife and I have been getting in much more arguments...
 Merch3: Seems like the demons of the past have come back to haunt me once more....
@@ -245,6 +246,7 @@ position: 2944,383
 ---
 <<if checkObtainedCup("") > 0>>
     <<startFirstCutscene>>
+    <<setOptionCountTo3>>
     Merch3: Ohohoho! Thank you! I really appreciate it, young man!
     Merch3: Now that we have everything in order, let’s revisit what we discussed earlier.
     Merch3: C… take a seat. Tell me what is bothering you.
