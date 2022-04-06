@@ -78796,7 +78796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398133072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -223.2399, y: 9.771944, z: -7.0893264}
+  m_LocalPosition: {x: -217.5699, y: 9.771944, z: -7.0893264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1171687303}
@@ -80154,7 +80154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -223.2399, y: 9.771944, z: -7.0893264}
+  m_LocalPosition: {x: -217.5699, y: 9.771944, z: -7.0893264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1346483936}
@@ -90660,7 +90660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2069206402
 Transform:
   m_ObjectHideFlags: 0
@@ -90937,6 +90937,17 @@ Transform:
   m_Father: {fileID: 841444832}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2113615268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4956631335449251597, guid: b0d3e15a240e9fc43860bdd45d935cde, type: 3}
+  m_PrefabInstance: {fileID: 4713538756003955230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b568d3b202539f6428dce3801dda448f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2117634206
 GameObject:
   m_ObjectHideFlags: 0
@@ -91342,6 +91353,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3580419460704076184, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
+      propertyPath: audioPlayer
+      value: 
+      objectReference: {fileID: 2113615268}
+    - target: {fileID: 3580419460704076184, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
+      propertyPath: wallJumpEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3580419460704076187, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
       propertyPath: pauseMenuUI
       value: 
@@ -91350,6 +91369,10 @@ PrefabInstance:
       propertyPath: merchantCupImage
       value: 
       objectReference: {fileID: 1841445512}
+    - target: {fileID: 3580419460704076195, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
+      propertyPath: audioPlayer
+      value: 
+      objectReference: {fileID: 2113615268}
     - target: {fileID: 3580419460704076195, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
       propertyPath: scriptHolder
       value: 
@@ -91364,7 +91387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3849543094431157218, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -215.29
+      value: -209.62
       objectReference: {fileID: 0}
     - target: {fileID: 3849543094431157218, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -91617,4 +91640,4 @@ MonoBehaviour:
   merch3: {fileID: 1401900581}
   teleporter0: {fileID: 1630939232}
   merchantCupImage: {fileID: 1841445512}
-  hasMerchantCup: 1
+  hasMerchantCup: 0

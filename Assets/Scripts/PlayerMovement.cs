@@ -46,9 +46,11 @@ public class PlayerMovement : MonoBehaviour
     //public AudioManager audioPlayer;
 
 
-
     private void Awake()
     {
+        //audioPlayer.PlaySound("BGM");
+        //audioPlayer.PlaySound("Wind");
+
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         //dialogueControls = FindObjectOfType<DialogueControls>();
         dialogueControls = scriptHolder.GetComponent<DialogueControls>();
