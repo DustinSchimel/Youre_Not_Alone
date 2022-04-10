@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
 
-        if (!dialogueRunner.IsDialogueRunning)  // Player is not currently talking, so they can move
+        if (!dialogueRunner.IsDialogueRunning && startedDialogue == false)  // Player is not currently talking, so they can move
         {
             //cam.
             playerInputActions.Player.Enable();
@@ -185,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
             if (startedDialogue == false)  // Player is not currently talking
             {
                 startedDialogue = true;
+                playerInputActions.Player.Disable();
                 // Kick off the dialogue at this node.
                 switcher.SwitchPriority();
                 StartCoroutine(waitForTwoSeconds(target));
