@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject oldCheckPoint = null;
 
     private CinemachineSwitcher switcher;
-    private bool startedDialogue;
+    public bool startedDialogue;
 
     //public AudioManager audioPlayer;
 
@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         //pauseScript = this.gameObject.GetComponent<PauseScript>;//collision.gameObject.GetComponent<RespawnPointHolder>();
         pauseScript = this.gameObject.GetComponent<PauseMenu>();
+        pauseScript.Resume();
 
         lastCheckpointReached = "";
         checkpointText.enabled = false;
@@ -92,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
 
-        if (!dialogueRunner.IsDialogueRunning)  // Player is not currently talking, so they can move
+        if (!dialogueRunner.IsDialogueRunning && startedDialogue == false)  // Player is not currently talking, so they can move
         {
             //cam.
             playerInputActions.Player.Enable();
@@ -185,8 +186,10 @@ public class PlayerMovement : MonoBehaviour
             if (startedDialogue == false)  // Player is not currently talking
             {
                 startedDialogue = true;
+                playerInputActions.Player.Disable();
                 // Kick off the dialogue at this node.
-                switcher.SwitchPriority();
+                //switcher.SwitchPriority();
+                switcher.ZoomIn();
                 StartCoroutine(waitForTwoSeconds(target));
             }
         }
@@ -334,6 +337,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void endDialogue()
     {
+        StartCoroutine(waitForTwoSecondsZoomOut());
+    }
+
+    IEnumerator waitForTwoSecondsZoomOut()
+    {
+        yield return new WaitForSeconds(2f);
+
         startedDialogue = false;
     }
 
