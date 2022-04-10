@@ -28,9 +28,9 @@ public class Sound
         
     }
 
-    public void SetMixer(AudioMixer audioMixer)
+    public void SetMixer(AudioMixerGroup audioMixer)
     {
-        source.outputAudioMixerGroup = audioMixer.outputAudioMixerGroup;
+        source.outputAudioMixerGroup = audioMixer;
     }
 
     public void Play()
@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     Sound[] sounds;
     [SerializeField]
-    public AudioMixer audioMixer;
+    public AudioMixerGroup audioMixer;
 
     private void Awake()
     {

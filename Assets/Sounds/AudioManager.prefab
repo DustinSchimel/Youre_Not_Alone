@@ -46,27 +46,27 @@ MonoBehaviour:
   sounds:
   - name: Walking (Grass)
     clip: {fileID: 8300000, guid: 1847a253a40a1864894241e00094f1f4, type: 3}
-    volume: 0.1
+    volume: 0.15
     pitch: 1
     loop: 0
   - name: Jump
     clip: {fileID: 8300000, guid: c540d3e69db78e24db1a1d89e79c2224, type: 3}
-    volume: 0.1
+    volume: 0.15
     pitch: 1
     loop: 0
   - name: BGM
     clip: {fileID: 8300000, guid: 19994303169a6b9429d1930ea88f12fe, type: 3}
-    volume: 0.1
+    volume: 0.15
     pitch: 1
     loop: 1
   - name: Wind
     clip: {fileID: 8300000, guid: b7a2207f4219a8c48a25516590e52089, type: 3}
-    volume: 0.1
+    volume: 0.15
     pitch: 1
     loop: 1
   - name: Dash
     clip: {fileID: 8300000, guid: a78cbce888a6b9741a338629da12c1cd, type: 3}
-    volume: 0.1
+    volume: 0.15
     pitch: 1
     loop: 0
-  audioMixer: {fileID: 24100000, guid: 88613a3a72677c846a551826ee2dbf8b, type: 2}
+  audioMixer: {fileID: 24300002, guid: 88613a3a72677c846a551826ee2dbf8b, type: 2}

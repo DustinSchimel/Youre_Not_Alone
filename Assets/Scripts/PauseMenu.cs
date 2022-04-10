@@ -51,6 +51,11 @@ public class PauseMenu : MonoBehaviour
         audioMixer.SetFloat("Volume", volume);
     }
 
+    public void Menu()
+    {
+
+    }
+
     public void QuitGame()
     {
         Application.Quit();
