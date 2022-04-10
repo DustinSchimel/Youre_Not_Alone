@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!dialogueRunner.IsDialogueRunning && startedDialogue == false)  // Player is not currently talking, so they can move
         {
-            //cam.
+            playerInputActions.Dialogue.Disable();   // Enables dialogue controls
             playerInputActions.Player.Enable();
             controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash, inputVector.x);
             dash = false;
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(0f, rb.velocity.y);   // Stops the players horizontal velocity once they enter dialogue
 
             playerInputActions.Player.Disable();    // Disables player movement
-            playerInputActions.Dialogue.Enable();   // Enables dialogue controls
+            //playerInputActions.Dialogue.Enable();   // Enables dialogue controls
         }
     }
 
@@ -187,8 +187,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 startedDialogue = true;
                 playerInputActions.Player.Disable();
+
                 // Kick off the dialogue at this node.
-                //switcher.SwitchPriority();
                 switcher.ZoomIn();
                 StartCoroutine(waitForTwoSeconds(target));
             }
@@ -298,7 +298,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private static void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Collectible")
         {
@@ -317,6 +317,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        playerInputActions.Dialogue.Enable();   // Enables dialogue controls
         dialogueRunner.StartDialogue(target.talkToNode);
     }
 
