@@ -19,9 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     PauseMenu pauseScript;
 
-    RespawnPointHolder respawnScript;
+    CheckpointProperties respawnScript;
     public Text checkpointText;
-    string lastCheckpointReached;
+    string lastCheckpointReached = "";
 
     bool jump = false;
     bool dash = false;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     DialogueEventsManager dialogueEventsScript;
     CollectibleTally collectibleScript;
-    bool inCollectible = false;
+    static bool inCollectible = false;
     GameObject collectible = null;
 
     private Rigidbody2D rb;
@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private float interactionRadius = 5f;
 
     public GameObject scriptHolder;
+    private GameObject oldCheckPoint = null;
 
     //public AudioManager audioPlayer;
 
@@ -247,13 +248,32 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.tag == "CheckPoint")
         {
-            respawnScript = collision.gameObject.GetComponent<RespawnPointHolder>();
+            respawnScript = collision.gameObject.GetComponent<CheckpointProperties>();
             respawnPoint = respawnScript.getPoint();
-            
-            if (!lastCheckpointReached.Equals(collision.gameObject.name))   // If the last checkpoint reached is not the same as the last one reached
+
+            Sprite unlitLamp = respawnScript.getUnlitLamp();
+            Sprite litLamp = respawnScript.getLitLamp();
+
+            if (!lastCheckpointReached.Equals(collision.gameObject.name))   // If the last checkpoint reached is not the same as the new one reached
             {
                 checkpointText.enabled = true;
                 lastCheckpointReached = collision.gameObject.name;  // Set it as the last checkpoint reached
+
+                if (oldCheckPoint == null)
+                {
+                    SpriteRenderer newRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
+                    newRenderer.sprite = litLamp;
+                }
+                else
+                {
+                    SpriteRenderer oldRenderer = (SpriteRenderer)oldCheckPoint.GetComponent<SpriteRenderer>();
+                    oldRenderer.sprite = unlitLamp;
+
+                    SpriteRenderer newRenderer = (SpriteRenderer)collision.gameObject.GetComponent<SpriteRenderer>();
+                    newRenderer.sprite = litLamp;
+                }
+
+                oldCheckPoint = collision.gameObject;
             }
 
             StartCoroutine(Coroutine());
@@ -273,7 +293,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private static void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Collectible")
         {
@@ -287,4 +307,20 @@ public class PlayerMovement : MonoBehaviour
 
         checkpointText.enabled = false;
     }
+
+    private Transform findChildTransform(string root, string child)
+    {
+        Transform target = null;
+        foreach (Transform gObject in transform.Find(root))
+        {
+            if (gObject.name == child)
+            {
+                target = gObject;
+                break;
+            }
+        }
+
+        return target;
+    }
+
 }
