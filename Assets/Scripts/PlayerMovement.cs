@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         //pauseScript = this.gameObject.GetComponent<PauseScript>;//collision.gameObject.GetComponent<RespawnPointHolder>();
         pauseScript = this.gameObject.GetComponent<PauseMenu>();
+        pauseScript.Resume();
 
         lastCheckpointReached = "";
         checkpointText.enabled = false;
