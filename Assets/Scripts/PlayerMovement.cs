@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject oldCheckPoint = null;
 
     private CinemachineSwitcher switcher;
-    private bool startedDialogue;
+    public bool startedDialogue;
 
     //public AudioManager audioPlayer;
 
@@ -187,7 +187,8 @@ public class PlayerMovement : MonoBehaviour
                 startedDialogue = true;
                 playerInputActions.Player.Disable();
                 // Kick off the dialogue at this node.
-                switcher.SwitchPriority();
+                //switcher.SwitchPriority();
+                switcher.ZoomIn();
                 StartCoroutine(waitForTwoSeconds(target));
             }
         }
@@ -335,6 +336,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void endDialogue()
     {
+        StartCoroutine(waitForTwoSecondsZoomOut());
+    }
+
+    IEnumerator waitForTwoSecondsZoomOut()
+    {
+        yield return new WaitForSeconds(2f);
+
         startedDialogue = false;
     }
 
