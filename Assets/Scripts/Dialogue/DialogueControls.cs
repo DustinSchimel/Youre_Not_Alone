@@ -1,5 +1,7 @@
 ﻿using Yarn.Unity;
 using UnityEngine;
+using Cinemachine;
+using System.Collections;
 
 public class DialogueControls : MonoBehaviour
 {
@@ -15,9 +17,18 @@ public class DialogueControls : MonoBehaviour
 
     private bool isOptionDisplayed;
 
+    private float zoomSpeed = 3f;
+    private float zoomInMax = 40f;
+    private float zoomOutMax = 90f;
+
+    public GameObject cam;
+    private CinemachineSwitcher switcher;
+
     // Start is called before the first frame update
     void Start()
     {
+        switcher = FindObjectOfType<CinemachineSwitcher>();
+
         // Flag needed to check when the Options are displayed to enable the controls for them
         isOptionDisplayed = false;
         // Get a reference to the DialogueUI
@@ -36,6 +47,14 @@ public class DialogueControls : MonoBehaviour
         {
             options[i] = dialogueUI.optionButtons[i].GetComponentInChildren<TMPro.TMP_Text>();
         }
+    }
+
+    void OnDisable()
+    {
+        // Zooms out
+        switcher.SwitchPriority();
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement.endDialogue();
     }
 
     public void SetOptions(int optionCount)

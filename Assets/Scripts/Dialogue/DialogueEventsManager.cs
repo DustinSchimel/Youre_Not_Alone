@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class DialogueEventsManager : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class DialogueEventsManager : MonoBehaviour
     public GameObject merch0;
     public GameObject merch2;
     public GameObject merch3;
+
+    private float zoomSpeed = 3f;
+    private float zoomInMax = 40f;
+    public float zoomOutMax = 90f;
 
     private Camera cam;
 
@@ -37,11 +42,9 @@ public class DialogueEventsManager : MonoBehaviour
         dr.AddCommandHandler("enable_teleporter0", enableTeleporter0);
 
         dr.AddCommandHandler("startFirstCutscene", startFirstCutscene);
-
         dr.AddCommandHandler("endFirstCutscene", endFirstCutscene);
 
         dr.AddCommandHandler("setOptionCountTo3", setOptionCountTo3);
-
         dr.AddCommandHandler("setOptionCountTo2", setOptionCountTo3);
 
         dr.AddFunction("checkObtainedCup", 1, delegate (Yarn.Value[] parameters)
@@ -81,7 +84,6 @@ public class DialogueEventsManager : MonoBehaviour
     {
         merch3.SetActive(false);
         merch2.SetActive(true);
-        //dialogueControls.SetOptions(2);
         Timeline_Merch.SetActive(false);
     }
 

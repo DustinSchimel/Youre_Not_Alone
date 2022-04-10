@@ -66,6 +66,7 @@ public class DialogueMover : MonoBehaviour
         }
         else if (character.name.Contains("Character Body"))
         {
+
             x = character.transform.position.x;
             y = character.transform.position.y + 6.45f;
         }

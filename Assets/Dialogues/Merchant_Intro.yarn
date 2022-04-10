@@ -84,7 +84,7 @@ Merch: I’ll meet you there after I pack up my goods and get the donkey’s mov
 title: Intro_Dialog09
 tags: 
 colorID: 1
-position: 2218,409
+position: 2219,409
 ---
 OO-ok…
 <<enable_teleporter0>>

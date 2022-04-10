@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject scriptHolder;
     private GameObject oldCheckPoint = null;
 
+    private CinemachineSwitcher switcher;
+    private bool startedDialogue;
+
     //public AudioManager audioPlayer;
 
 
@@ -51,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //audioPlayer.PlaySound("BGM");
         //audioPlayer.PlaySound("Wind");
+        switcher = FindObjectOfType<CinemachineSwitcher>();
+        startedDialogue = false;
 
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         //dialogueControls = FindObjectOfType<DialogueControls>();
@@ -177,8 +182,13 @@ public class PlayerMovement : MonoBehaviour
         });
         if (target != null)
         {
-            // Kick off the dialogue at this node.
-            dialogueRunner.StartDialogue(target.talkToNode);
+            if (startedDialogue == false)  // Player is not currently talking
+            {
+                startedDialogue = true;
+                // Kick off the dialogue at this node.
+                switcher.SwitchPriority();
+                StartCoroutine(waitForTwoSeconds(target));
+            }
         }
         else
         {
@@ -283,14 +293,6 @@ public class PlayerMovement : MonoBehaviour
             inCollectible = true;
             collectible = collision.gameObject;
         }
-        else if (collision.tag == "DialogueTo3")
-        {
-            dialogueControls.SetOptions(3);
-        }
-        else if (collision.tag == "DialogueTo2")
-        {
-            dialogueControls.SetOptions(2);
-        }
     }
 
     private static void OnTriggerExit2D(Collider2D collision)
@@ -308,6 +310,13 @@ public class PlayerMovement : MonoBehaviour
         checkpointText.enabled = false;
     }
 
+    IEnumerator waitForTwoSeconds(NPC target)
+    {
+        yield return new WaitForSeconds(2f);
+
+        dialogueRunner.StartDialogue(target.talkToNode);
+    }
+
     private Transform findChildTransform(string root, string child)
     {
         Transform target = null;
@@ -321,6 +330,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return target;
+    }
+
+    public void endDialogue()
+    {
+        startedDialogue = false;
     }
 
 }
