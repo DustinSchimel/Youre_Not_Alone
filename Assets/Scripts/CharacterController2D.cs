@@ -72,8 +72,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void Start()
     {
-		//audioPlayer.PlaySound("BGM");
-		//audioPlayer.PlaySound("Wind");
+		audioPlayer.PlaySound("BGM");
+		audioPlayer.PlaySound("Wind");
 	}
 
     private void FixedUpdate()
@@ -116,6 +116,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Move(float move, float vertical, bool jump, bool dash, float isMoving)
 	{
+		
 		if (m_Grounded && isMoving != 0)    // Player is moving
 		{
 			audioPlayer.PlaySound("Walking (Grass)");
