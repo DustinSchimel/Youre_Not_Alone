@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     PauseMenu pauseScript;
 
+    public LevelLoader loader;
+
     CheckpointProperties respawnScript;
     public Text checkpointText;
     string lastCheckpointReached = "";
@@ -46,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     private CinemachineSwitcher switcher;
     public bool startedDialogue;
+
+    private Vector2 respawnLocation;
 
     //public AudioManager audioPlayer;
 
@@ -249,15 +253,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "DeathZone")
+        if (collision.tag == "DeathZone" || collision.tag == "Enemy" || collision.tag == "Projectile")
         {
             trail.emitting = false;
-            transform.position = respawnPoint;
-        }
-        else if (collision.tag == "Enemy" || collision.tag == "Projectile")
-        {
-            trail.emitting = false;
-            transform.position = respawnPoint;
+            respawnLocation = respawnPoint;
+            playerInputActions.Player.Disable();
+            Debug.Log("This one");
+            loader.LoadAfterDeath();
         }
         else if (collision.tag == "CheckPoint")
         {
@@ -304,6 +306,12 @@ public class PlayerMovement : MonoBehaviour
         {
             inCollectible = false;
         }
+    }
+
+    public void Respawn()
+    {
+        transform.position = respawnLocation;
+        playerInputActions.Player.Enable();
     }
 
     IEnumerator Coroutine()
