@@ -91660,6 +91660,17 @@ Transform:
   m_Father: {fileID: 1268770345}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &602716331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3334560866316920675, guid: efdbdc92b8faa6d4aae8c7f603676ca6, type: 3}
+  m_PrefabInstance: {fileID: 4511818524139895997}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &605549298 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5261560610447431774, guid: efdbdc92b8faa6d4aae8c7f603676ca6, type: 3}
@@ -102717,6 +102728,10 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 165678517}
+    - target: {fileID: 3580419460704076187, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 602716331}
     - target: {fileID: 3580419460704076194, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
       propertyPath: merchantCupImage
       value: 
@@ -102816,6 +102831,10 @@ PrefabInstance:
     - target: {fileID: 1467271090196296284, guid: efdbdc92b8faa6d4aae8c7f603676ca6, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.2733
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319254831024543030, guid: efdbdc92b8faa6d4aae8c7f603676ca6, type: 3}
+      propertyPath: m_Text
+      value: <b>Resume</b>
       objectReference: {fileID: 0}
     - target: {fileID: 3319254831024543030, guid: efdbdc92b8faa6d4aae8c7f603676ca6, type: 3}
       propertyPath: m_Color.b
@@ -102947,7 +102966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8973339662806142797, guid: efdbdc92b8faa6d4aae8c7f603676ca6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efdbdc92b8faa6d4aae8c7f603676ca6, type: 3}
