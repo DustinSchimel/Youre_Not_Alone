@@ -175,6 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1750928825}
   loader: {fileID: 1586748643}
+  play: {fileID: 1725415876}
+  quit: {fileID: 95493421}
 --- !u!1 &95493419
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +831,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Play
+  m_Text: '<b>Play</b>
 
 '
 --- !u!222 &1725415877
@@ -951,6 +953,10 @@ PrefabInstance:
     - target: {fileID: 1111981037328017263, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111981037328017263, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2904835467477179572, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
       propertyPath: m_Layer

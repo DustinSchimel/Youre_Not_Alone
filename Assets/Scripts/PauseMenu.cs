@@ -63,20 +63,20 @@ public class PauseMenu : MonoBehaviour
         }
         else if (optionSelected == 1)   // Volume is selected
         {
-            // disable volume bold
+            // Disable volume bold
             volume.text = volume.text.Substring(3, 6);
 
-            // enable resume bold
+            // Enable resume bold
             resume.text = "<b>" + resume.text + "</b>";
 
             optionSelected = 0;
         }
         else if (optionSelected == 2)   // Quit is selected
         {
-            // disable quit bold
+            // Disable quit bold
             quit.text = quit.text.Substring(3, 4);
 
-            // enable volume bold
+            // Enable volume bold
             volume.text = "<b>" + volume.text + "</b>";
 
             optionSelected = 1;
@@ -87,20 +87,20 @@ public class PauseMenu : MonoBehaviour
     {
         if (optionSelected == 0)    // Resume is selected
         {
-            // disable resume bold
+            // Disable resume bold
             resume.text = resume.text.Substring(3, 6);
 
-            // enable volume bold
+            // Enable volume bold
             volume.text = "<b>" + volume.text + "</b>";
 
             optionSelected = 1;
         }
         else if (optionSelected == 1)   // Volume is selected
         {
-            // disable volume bold
+            // Disable volume bold
             volume.text = volume.text.Substring(3, 6);
 
-            // enable quit bold
+            // Enable quit bold
             quit.text = "<b>" + quit.text + "</b>";
 
             optionSelected = 2;
@@ -135,7 +135,7 @@ public class PauseMenu : MonoBehaviour
         }
         else if (optionSelected == 1)   // Volume is selected
         {
-            // does nothing
+            // Does nothing
         }
         else if (optionSelected == 2)   // Quit is selected
         {
