@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     CheckpointProperties respawnScript;
     public Text checkpointText;
     string lastCheckpointReached = "";
+    private bool dead;
 
     bool jump = false;
     bool dash = false;
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         //audioPlayer.PlaySound("Wind");
         switcher = FindObjectOfType<CinemachineSwitcher>();
         startedDialogue = false;
+        dead = false;
 
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         //dialogueControls = FindObjectOfType<DialogueControls>();
@@ -97,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
 
-        if (!dialogueRunner.IsDialogueRunning && startedDialogue == false)  // Player is not currently talking, so they can move
+        if (!dialogueRunner.IsDialogueRunning && startedDialogue == false && dead == false)  // Player is not currently talking, so they can move
         {
             playerInputActions.Dialogue.Disable();   // Enables dialogue controls
             playerInputActions.Player.Enable();
@@ -251,15 +253,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void setDead(bool value)
+    {
+        dead = value;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "DeathZone" || collision.tag == "Enemy" || collision.tag == "Projectile")
         {
-            trail.emitting = false;
-            respawnLocation = respawnPoint;
-            playerInputActions.Player.Disable();
-            Debug.Log("This one");
-            loader.LoadAfterDeath();
+            if (!dead)
+            {
+                trail.emitting = false;
+                respawnLocation = respawnPoint;
+                dead = true;
+                playerInputActions.Player.Disable();
+                Debug.Log("This one");
+                loader.LoadAfterDeath();
+            }
         }
         else if (collision.tag == "CheckPoint")
         {
@@ -356,4 +367,23 @@ public class PlayerMovement : MonoBehaviour
         startedDialogue = false;
     }
 
+    public void disableMovement()
+    {
+        playerInputActions.Player.Disable();
+    }
+
+    public void enableMovement()
+    {
+        playerInputActions.Player.Enable();
+    }
+
+    public void disableDialogueProgress()
+    {
+        playerInputActions.Dialogue.Disable();
+    }
+
+    public void enableDialogueProgress()
+    {
+        playerInputActions.Dialogue.Enable();
+    }
 }

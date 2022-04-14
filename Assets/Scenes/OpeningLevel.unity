@@ -113299,7 +113299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -263.6299, y: 8.8319435, z: -7.0893264}
+  m_LocalPosition: {x: -264.03992, y: 8.801944, z: -7.0893264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1346483936}
@@ -116020,6 +116020,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1111981037328017263, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5375126418797904233, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
       propertyPath: movement
       value: 
@@ -116028,13 +116032,21 @@ PrefabInstance:
       propertyPath: teleporter
       value: 
       objectReference: {fileID: 3580419462332436985}
+    - target: {fileID: 5397236781212018446, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467196706222284331, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8002219972026384960, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
     - target: {fileID: 8002219972026384960, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8930307869030561004, guid: 0efe2657649574b4eb9131e115d65650, type: 3}
       propertyPath: m_RootOrder
@@ -117909,7 +117921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271743310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -263.6299, y: 8.8319435, z: -7.0893264}
+  m_LocalPosition: {x: -264.03992, y: 8.801944, z: -7.0893264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 77080632}
@@ -124891,11 +124903,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3849543094431157218, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -255.68
+      value: -256.09
       objectReference: {fileID: 0}
     - target: {fileID: 3849543094431157218, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.03
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 3849543094431157218, guid: 7c5ef74a05eeda24884a17e8564e6af9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -125212,7 +125224,9 @@ MonoBehaviour:
   merch0: {fileID: 1038902199}
   merch2: {fileID: 1743084367}
   merch3: {fileID: 1401900581}
-  zoomOutMax: 90
+  movement: {fileID: 7151542509924409969}
   teleporter0: {fileID: 1630939232}
   merchantCupImage: {fileID: 1841445512}
   hasMerchantCup: 0
+  loader: {fileID: 1024595820}
+  animator: {fileID: 7151542509924409973}

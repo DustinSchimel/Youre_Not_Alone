@@ -51,6 +51,20 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadRespawn());
     }
 
+    public void Transition()
+    {
+        StartCoroutine(OnlyTransition());
+    }
+
+    IEnumerator OnlyTransition()
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        transition.SetTrigger("End");
+    }
+
     IEnumerator LoadRespawn()
     {
         transition.SetTrigger("Start");
@@ -59,6 +73,6 @@ public class LevelLoader : MonoBehaviour
 
         transition.SetTrigger("End");
         movement.Respawn();
+        movement.setDead(false);
     }
-
 }
