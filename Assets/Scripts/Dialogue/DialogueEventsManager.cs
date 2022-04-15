@@ -17,9 +17,7 @@ public class DialogueEventsManager : MonoBehaviour
     public GameObject merch2;
     public GameObject merch3;
 
-    private float zoomSpeed = 3f;
-    private float zoomInMax = 40f;
-    public float zoomOutMax = 90f;
+    public PlayerMovement movement;
 
     private Camera cam;
 
@@ -27,6 +25,10 @@ public class DialogueEventsManager : MonoBehaviour
 
     public Image merchantCupImage;
     public bool hasMerchantCup = false;
+
+    public LevelLoader loader;
+
+    public Animator animator;
 
     private void Awake()
     {
@@ -62,6 +64,26 @@ public class DialogueEventsManager : MonoBehaviour
         });
     }
 
+    IEnumerator delayEnableCutscene1()
+    {
+        yield return new WaitForSeconds(1f);
+
+        Timeline_Merch.SetActive(true);
+        movement.enableDialogueProgress();
+    }
+
+    IEnumerator delayDisableCutscene1()
+    {
+        yield return new WaitForSeconds(1f);
+
+        animator.Rebind();
+        animator.Update(0f);
+        merch3.SetActive(false);
+        merch2.SetActive(true);
+        Timeline_Merch.SetActive(false);
+        //enable controls
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -77,14 +99,21 @@ public class DialogueEventsManager : MonoBehaviour
 
     private void startFirstCutscene(string[] arr)
     {
-        Timeline_Merch.SetActive(true);
+        // start transition
+        loader.Transition();
+        // Disable controls
+        movement.disableDialogueProgress();
+
+        StartCoroutine(delayEnableCutscene1());
     }
 
     private void endFirstCutscene(string[] arr)
     {
-        merch3.SetActive(false);
-        merch2.SetActive(true);
-        Timeline_Merch.SetActive(false);
+        // start transition
+        loader.Transition();
+        // Disable controls
+
+        StartCoroutine(delayDisableCutscene1());
     }
 
     public void setOptionCountTo3(string[] arr)

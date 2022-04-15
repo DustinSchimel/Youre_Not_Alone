@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [System.Serializable]
 public class Sound
@@ -8,7 +9,8 @@ public class Sound
     public string name;
     public AudioClip clip;
 
-    private AudioSource source;
+    private AudioSource source;    
+
     private bool pauseVolumeSet;
 
     [Range(0, 1f)]
@@ -23,10 +25,17 @@ public class Sound
     {
         source = _source;
         source.clip = clip;
+        
+    }
+
+    public void SetMixer(AudioMixerGroup audioMixer)
+    {
+        source.outputAudioMixerGroup = audioMixer;
     }
 
     public void Play()
     {
+        Debug.Log(this.name);
         source.volume = volume;
         source.pitch = pitch;
         source.loop = loop;
@@ -36,27 +45,6 @@ public class Sound
     public void StopPlaying()
     {
         source.Stop();
-    }
-
-    public void PauseVolume()
-    {
-        if (!pauseVolumeSet)
-        {
-            pauseVolumeSet = true;
-            source.pitch *= 0.5f;
-            source.volume *= 0.5f;
-        }
-
-    }
-
-    public void NormalVolume()
-    {
-        if (pauseVolumeSet)
-        {
-            pauseVolumeSet = false;
-            source.pitch *= 2;
-            source.volume *= 2;
-        }
     }
 }
 
@@ -68,6 +56,8 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     Sound[] sounds;
+    [SerializeField]
+    public AudioMixerGroup audioMixer;
 
     private void Awake()
     {
@@ -81,33 +71,29 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
 
-    }
-
-    private void Start()
-    {
         for (int i = 0; i < sounds.Length; i++)
         {
             GameObject _go = new GameObject("Sound_" + i + "_" + sounds[i].name);
             _go.transform.SetParent(this.transform);
             sounds[i].SetSource(_go.AddComponent<AudioSource>());
+            sounds[i].SetMixer(audioMixer);
             if (sounds[i].name == "Walking (Grass)")
             {
                 soundTimerDictionary[sounds[i]] = 0f;
             }
         }
+
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void FixedUpdate()
     {
         for (int i = 0; i < sounds.Length; i++)
         {
-            if (PauseMenu.gameIsPaused)
-            {
-                sounds[i].PauseVolume();
-            } else if (!PauseMenu.gameIsPaused)
-            {
-                sounds[i].NormalVolume();
-            }
             if(sounds[i].name == "Wind")
             {
                 if (CaveBarrier.inCave)
@@ -124,8 +110,10 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < sounds.Length; i++)
         {
+            
             if (sounds[i].name == _name)
             {
+                
                 if (sounds[i].name == "Walking (Grass)")
                 {
                     if (CanPlaySound(sounds[i]))

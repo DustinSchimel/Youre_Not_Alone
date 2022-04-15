@@ -9,6 +9,11 @@ public class PlayerTeleporter : MonoBehaviour
 
     CharacterController2D controller;
 
+    public LevelLoader loader;
+
+    private float x;
+    private float y;
+
     private void Awake()
     {
         controller = this.gameObject.GetComponent<CharacterController2D>();
@@ -26,10 +31,15 @@ public class PlayerTeleporter : MonoBehaviour
             }
 
             var position = collision.gameObject.GetComponent<Teleporter>().GetDestination().position;
-            float x = position.x;
-            float y = position.y;
+            x = position.x;
+            y = position.y;
 
-            transform.position = new Vector2(x, y);
+            loader.LoadAfterTeleport();
         }
+    }
+
+    public void TelportPlayer()
+    {
+        transform.position = new Vector2(x, y);
     }
 }

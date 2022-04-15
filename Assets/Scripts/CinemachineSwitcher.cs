@@ -12,7 +12,8 @@ public class CinemachineSwitcher : MonoBehaviour
 
     void Start()
     {
-        
+        vcam2.enabled = true;
+        ZoomOut();
     }
 
     public void SwitchPriority()
@@ -31,5 +32,21 @@ public class CinemachineSwitcher : MonoBehaviour
 
             currentCamera = 0;
         }
+    }
+
+    public void ZoomIn()
+    {
+        vcam1.Priority = 0;
+        vcam2.Priority = 1;
+
+        currentCamera = 1;
+    }
+
+    public void ZoomOut()
+    {
+        vcam1.Priority = 1;
+        vcam2.Priority = 0;
+
+        currentCamera = 0;
     }
 }

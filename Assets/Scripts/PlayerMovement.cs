@@ -19,9 +19,12 @@ public class PlayerMovement : MonoBehaviour
 
     PauseMenu pauseScript;
 
+    public LevelLoader loader;
+
     CheckpointProperties respawnScript;
     public Text checkpointText;
     string lastCheckpointReached = "";
+    private bool dead;
 
     bool jump = false;
     bool dash = false;
@@ -45,7 +48,9 @@ public class PlayerMovement : MonoBehaviour
     private GameObject oldCheckPoint = null;
 
     private CinemachineSwitcher switcher;
-    private bool startedDialogue;
+    public bool startedDialogue;
+
+    private Vector2 respawnLocation;
 
     //public AudioManager audioPlayer;
 
@@ -56,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         //audioPlayer.PlaySound("Wind");
         switcher = FindObjectOfType<CinemachineSwitcher>();
         startedDialogue = false;
+        dead = false;
 
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         //dialogueControls = FindObjectOfType<DialogueControls>();
@@ -63,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         //pauseScript = this.gameObject.GetComponent<PauseScript>;//collision.gameObject.GetComponent<RespawnPointHolder>();
         pauseScript = this.gameObject.GetComponent<PauseMenu>();
+        //pauseScript.Resume();
 
         lastCheckpointReached = "";
         checkpointText.enabled = false;
@@ -92,9 +99,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
 
-        if (!dialogueRunner.IsDialogueRunning)  // Player is not currently talking, so they can move
+        if (!dialogueRunner.IsDialogueRunning && startedDialogue == false && dead == false)  // Player is not currently talking, so they can move
         {
-            //cam.
+            playerInputActions.Dialogue.Disable();   // Enables dialogue controls
             playerInputActions.Player.Enable();
             controller.Move(inputVector.x * Time.fixedDeltaTime * runSpeed, inputVector.y, jump, dash, inputVector.x);
             dash = false;
@@ -106,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(0f, rb.velocity.y);   // Stops the players horizontal velocity once they enter dialogue
 
             playerInputActions.Player.Disable();    // Disables player movement
-            playerInputActions.Dialogue.Enable();   // Enables dialogue controls
+            //playerInputActions.Dialogue.Enable();   // Enables dialogue controls
         }
     }
 
@@ -185,8 +192,10 @@ public class PlayerMovement : MonoBehaviour
             if (startedDialogue == false)  // Player is not currently talking
             {
                 startedDialogue = true;
+                playerInputActions.Player.Disable();
+
                 // Kick off the dialogue at this node.
-                switcher.SwitchPriority();
+                switcher.ZoomIn();
                 StartCoroutine(waitForTwoSeconds(target));
             }
         }
@@ -200,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)  // true if the button was just hit
         {
-            pauseScript.Pause(context);
+            pauseScript.Pause(context, playerInputActions);
         }
     }
 
@@ -244,17 +253,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void setDead(bool value)
+    {
+        dead = value;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "DeathZone")
+        if (collision.tag == "DeathZone" || collision.tag == "Enemy" || collision.tag == "Projectile")
         {
-            trail.emitting = false;
-            transform.position = respawnPoint;
-        }
-        else if (collision.tag == "Enemy" || collision.tag == "Projectile")
-        {
-            trail.emitting = false;
-            transform.position = respawnPoint;
+            if (!dead)
+            {
+                trail.emitting = false;
+                respawnLocation = respawnPoint;
+                dead = true;
+                playerInputActions.Player.Disable();
+                Debug.Log("This one");
+                loader.LoadAfterDeath();
+            }
         }
         else if (collision.tag == "CheckPoint")
         {
@@ -295,12 +311,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private static void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Collectible")
         {
             inCollectible = false;
         }
+    }
+
+    public void Respawn()
+    {
+        transform.position = respawnLocation;
+        playerInputActions.Player.Enable();
     }
 
     IEnumerator Coroutine()
@@ -314,6 +336,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        playerInputActions.Dialogue.Enable();   // Enables dialogue controls
         dialogueRunner.StartDialogue(target.talkToNode);
     }
 
@@ -334,7 +357,33 @@ public class PlayerMovement : MonoBehaviour
 
     public void endDialogue()
     {
+        StartCoroutine(waitForTwoSecondsZoomOut());
+    }
+
+    IEnumerator waitForTwoSecondsZoomOut()
+    {
+        yield return new WaitForSeconds(2f);
+
         startedDialogue = false;
     }
 
+    public void disableMovement()
+    {
+        playerInputActions.Player.Disable();
+    }
+
+    public void enableMovement()
+    {
+        playerInputActions.Player.Enable();
+    }
+
+    public void disableDialogueProgress()
+    {
+        playerInputActions.Dialogue.Disable();
+    }
+
+    public void enableDialogueProgress()
+    {
+        playerInputActions.Dialogue.Enable();
+    }
 }

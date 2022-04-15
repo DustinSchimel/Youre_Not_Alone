@@ -52,7 +52,7 @@ public class DialogueControls : MonoBehaviour
     void OnDisable()
     {
         // Zooms out
-        switcher.SwitchPriority();
+        switcher.ZoomOut();
         PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
         playerMovement.endDialogue();
     }
