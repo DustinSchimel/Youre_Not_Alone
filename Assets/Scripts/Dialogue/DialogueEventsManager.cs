@@ -20,6 +20,10 @@ public class DialogueEventsManager : MonoBehaviour
     public GameObject friend1;
     public GameObject friend2;
 
+    public GameObject sky;
+
+    private bool didPlayerLie = false;
+
     public PlayerMovement movement;
 
     private Camera cam;
@@ -52,6 +56,7 @@ public class DialogueEventsManager : MonoBehaviour
         dr.AddCommandHandler("endFirstCutscene", endFirstCutscene);
 
         // Friend stuff
+        dr.AddCommandHandler("playerLied", playerLied);
         dr.AddCommandHandler("disable_friendWall", disableFriendWall);
 
         // Everything
@@ -140,6 +145,13 @@ public class DialogueEventsManager : MonoBehaviour
         friendWall.SetActive(false);
         friend1.SetActive(false);
         friend2.SetActive(true);
+        sky.SetActive(false);
+    }
+
+    public void playerLied(string[] arr)
+    {
+        didPlayerLie = true;
+        Debug.Log("Player lied");
     }
 
     public void setMerchantCup(bool value)
