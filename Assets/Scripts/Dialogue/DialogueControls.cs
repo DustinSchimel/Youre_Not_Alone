@@ -17,10 +17,6 @@ public class DialogueControls : MonoBehaviour
 
     private bool isOptionDisplayed;
 
-    private float zoomSpeed = 3f;
-    private float zoomInMax = 40f;
-    private float zoomOutMax = 90f;
-
     public GameObject cam;
     private CinemachineSwitcher switcher;
 

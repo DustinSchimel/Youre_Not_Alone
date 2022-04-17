@@ -17,11 +17,15 @@ public class DialogueEventsManager : MonoBehaviour
     public GameObject merch2;
     public GameObject merch3;
 
+    public GameObject friend1;
+    public GameObject friend2;
+
     public PlayerMovement movement;
 
     private Camera cam;
 
     public GameObject teleporter0;
+    public GameObject friendWall;
 
     public Image merchantCupImage;
     public bool hasMerchantCup = false;
@@ -41,11 +45,16 @@ public class DialogueEventsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Merchant stuff
         dr.AddCommandHandler("enable_teleporter0", enableTeleporter0);
 
         dr.AddCommandHandler("startFirstCutscene", startFirstCutscene);
         dr.AddCommandHandler("endFirstCutscene", endFirstCutscene);
 
+        // Friend stuff
+        dr.AddCommandHandler("disable_friendWall", disableFriendWall);
+
+        // Everything
         dr.AddCommandHandler("setOptionCountTo3", setOptionCountTo3);
         dr.AddCommandHandler("setOptionCountTo2", setOptionCountTo3);
 
@@ -124,6 +133,13 @@ public class DialogueEventsManager : MonoBehaviour
     public void setOptionCountTo2(string[] arr)
     {
         dialogueControls.SetOptions(2);
+    }
+
+    public void disableFriendWall(string[] arr)
+    {
+        friendWall.SetActive(false);
+        friend1.SetActive(false);
+        friend2.SetActive(true);
     }
 
     public void setMerchantCup(bool value)
