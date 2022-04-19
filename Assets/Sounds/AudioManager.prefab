@@ -64,6 +64,16 @@ MonoBehaviour:
     volume: 0.15
     pitch: 1
     loop: 1
+  - name: CaveMusic
+    clip: {fileID: 8300000, guid: 53669e24f913534438dcff3c1881748e, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 1
+  - name: FriendMusic
+    clip: {fileID: 8300000, guid: 7253f685e142d82408847b8db3a9decc, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 1
   - name: Dash
     clip: {fileID: 8300000, guid: a78cbce888a6b9741a338629da12c1cd, type: 3}
     volume: 0.15

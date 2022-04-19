@@ -14,6 +14,8 @@ TagManager:
   - CaveEntrance
   - DialogueTo3
   - DialogueTo2
+  - FriendMusic
+  - CaveMusic
   layers:
   - Default
   - TransparentFX
