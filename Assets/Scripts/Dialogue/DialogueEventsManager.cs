@@ -189,6 +189,8 @@ public class DialogueEventsManager : MonoBehaviour
 
     public void disableMerchantWall(string[] arr)
     {
+        animator.Rebind();
+        animator.Update(0f);
         merchantWall.SetActive(false);
         movement2D.EnableDoubleJump();
     }
