@@ -1,15 +1,15 @@
 title: Cut01
 tags: 
 colorID: 0
-position: 3365,386
+position: 3311,376
 ---
-... Nothing’s wrong. I think I may be a little bit tired, that’s all.
-[[Cut02]]
+[[... Nothing’s wrong. I think I may be a little bit tired, that’s all.|Cut02]]
+[[... There has actually been something on my mind.|Recut0]]
 ===
 title: Cut02
 tags: 
 colorID: 0
-position: 3689,394
+position: 3746,375
 ---
 Merch3: C… you’ve been like this for months. Being tired for months isn’t normal.
 Merch3: You’re a young and healthy kid, so this change has been really noticeable. What’s going on?
@@ -20,7 +20,6 @@ Merch3: You can talk to me. Whatever you’re willing to tell me, I’ll keep it
 
 [[... I've been having trouble at home... my parents keep fighting, and I think they might divorce..|C301]]
 [[... I'm being harassed by my peers at school and no one is doing anything to stop it..|C401]]
-[[... I can't handle it.. The expectation of doing something great.. I don't have any big ambitions, but my peers do..|Choice05]]
 ===
 title: Choice05
 tags: 
@@ -202,7 +201,6 @@ tags:
 colorID: 0
 position: 8475,643
 ---
-<<setOptionCountTo2>>
 Merch3: That is very kind C. Your words flatter me to no end. Oho!
 Merch3: ... But. I am not nearly as perfect as you think I am. Recently, my wife and I have been getting in much more arguments...
 Merch3: Seems like the demons of the past have come back to haunt me once more....
@@ -220,6 +218,7 @@ Merch3: Just know that... this fight you are having, isn't something you have to
 Merch3: There are many more people who can help lessen the burden. We all carry doubts and insecurities within us. That is what makes us who we are!
 Merch3: So C, just know that....
 Merch3: You're Not Alone.
+<<setOptionCountTo2>>
 <<endFirstCutscene>>
 ===
 title: Start2
@@ -246,7 +245,6 @@ position: 2944,383
 ---
 <<if checkObtainedCup("") > 0>>
     <<startFirstCutscene>>
-    <<setOptionCountTo3>>
     Merch3: Ohohoho! Thank you! I really appreciate it, young man!
     Merch3: Now that we have everything in order, let’s revisit what we discussed earlier.
     Merch3: C… take a seat. Tell me what is bothering you.
@@ -256,4 +254,12 @@ position: 2944,383
 <<else>>
     Merch3: No need to pull my leg!
 <<endif>>
+===
+title: Recut0
+tags: 
+colorID: 0
+position: 3725,980
+---
+.... I can't handle it.. The expectation of doing something great.. I don't have any big ambitions, but my peers do..
+[[Choice05]]
 ===

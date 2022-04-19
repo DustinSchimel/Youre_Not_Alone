@@ -41,7 +41,6 @@ public class DialogueEventsManager : MonoBehaviour
     private void Awake()
     {
         dialogueUI = FindObjectOfType<DialogueUI2>();
-        //dialogueControls = FindObjectOfType<DialogueControls>();
         cam = Camera.main;
         merchantCupImage.enabled = false;
     }
@@ -132,11 +131,13 @@ public class DialogueEventsManager : MonoBehaviour
 
     public void setOptionCountTo3(string[] arr)
     {
+        dialogueControls = FindObjectOfType<DialogueControls>();
         dialogueControls.SetOptions(3);
     }
 
     public void setOptionCountTo2(string[] arr)
     {
+        dialogueControls = FindObjectOfType<DialogueControls>();
         dialogueControls.SetOptions(2);
     }
 
