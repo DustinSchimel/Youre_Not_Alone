@@ -25,11 +25,13 @@ public class DialogueEventsManager : MonoBehaviour
     private bool didPlayerLie = false;
 
     public PlayerMovement movement;
+    private CharacterController2D movement2D;
 
     private Camera cam;
 
     public GameObject teleporter0;
     public GameObject friendWall;
+    public GameObject merchantWall;
 
     public Image merchantCupImage;
     public bool hasMerchantCup = false;
@@ -40,6 +42,7 @@ public class DialogueEventsManager : MonoBehaviour
 
     private void Awake()
     {
+        movement2D = FindObjectOfType<CharacterController2D>();
         dialogueUI = FindObjectOfType<DialogueUI2>();
         cam = Camera.main;
         merchantCupImage.enabled = false;
@@ -97,12 +100,6 @@ public class DialogueEventsManager : MonoBehaviour
         //enable controls
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void enableTeleporter0(string[] arr)
     {
         teleporter0.SetActive(true);
@@ -147,6 +144,12 @@ public class DialogueEventsManager : MonoBehaviour
         friend1.SetActive(false);
         friend2.SetActive(true);
         sky.SetActive(false);
+    }
+
+    public void disableMerchantWall(string[] arr)
+    {
+        merchantWall.SetActive(false);
+        movement2D.EnableDoubleJump();
     }
 
     public void playerLied(string[] arr)
