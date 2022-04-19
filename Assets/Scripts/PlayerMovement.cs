@@ -168,6 +168,22 @@ public class PlayerMovement : MonoBehaviour
                 //collectibleScript.setMerchantCup(true);
                 dialogueEventsScript.setMerchantCup(true);
             }
+            else if (collectible.name == "Ball")
+            {
+                Debug.Log("Collected ball");
+                //collectibleScript = rb.gameObject.GetComponent<CollectibleTally>();
+                dialogueEventsScript = rb.gameObject.GetComponent<DialogueEventsManager>();
+                //collectibleScript.setMerchantCup(true);
+                dialogueEventsScript.setBall(true);
+            }
+            else if (collectible.name == "Leak")
+            {
+                Debug.Log("Collected leak");
+                //collectibleScript = rb.gameObject.GetComponent<CollectibleTally>();
+                dialogueEventsScript = rb.gameObject.GetComponent<DialogueEventsManager>();
+                //collectibleScript.setMerchantCup(true);
+                dialogueEventsScript.setLeak(true);
+            }
         }
         else
         {

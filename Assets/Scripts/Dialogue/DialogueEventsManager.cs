@@ -35,6 +35,10 @@ public class DialogueEventsManager : MonoBehaviour
 
     public Image merchantCupImage;
     public bool hasMerchantCup = false;
+    public Image ballImage;
+    public bool hasBall = false;
+    public Image leakImage;
+    public bool hasLeak = false;
 
     public LevelLoader loader;
 
@@ -46,6 +50,8 @@ public class DialogueEventsManager : MonoBehaviour
         dialogueUI = FindObjectOfType<DialogueUI2>();
         cam = Camera.main;
         merchantCupImage.enabled = false;
+        ballImage.enabled = false;
+        leakImage.enabled = false;
     }
 
     // Start is called before the first frame update
@@ -73,6 +79,34 @@ public class DialogueEventsManager : MonoBehaviour
             {
                 merchantCupImage.enabled = false;
                 hasMerchantCup = false;
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        });
+
+        dr.AddFunction("checkObtainedBall", 1, delegate (Yarn.Value[] parameters)
+        {
+            if (hasBall == true)
+            {
+                ballImage.enabled = false;
+                hasBall = false;
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        });
+
+        dr.AddFunction("checkObtainedLeak", 1, delegate (Yarn.Value[] parameters)
+        {
+            if (hasLeak == true)
+            {
+                leakImage.enabled = false;
+                hasLeak = false;
                 return 1;
             }
             else
@@ -181,5 +215,43 @@ public class DialogueEventsManager : MonoBehaviour
     public bool getMerchantCup()
     {
         return hasMerchantCup;
+    }
+
+    public void setBall(bool value)
+    {
+        hasBall = value;
+
+        if (value)
+        {
+            Debug.Log("Enabled");
+            ballImage.enabled = true;
+        }
+        else
+        {
+            Debug.Log("Disabled");
+            ballImage.enabled = false;
+        }
+    }
+    public bool getBall()
+    {
+        return hasBall;
+    }
+
+    public void setLeak(bool value)
+    {
+        hasLeak = value;
+
+        if (value)
+        {
+            leakImage.enabled = true;
+        }
+        else
+        {
+            leakImage.enabled = false;
+        }
+    }
+    public bool getLeak()
+    {
+        return hasLeak;
     }
 }
