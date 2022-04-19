@@ -16,6 +16,7 @@ TagManager:
   - DialogueTo2
   - FriendMusic
   - CaveMusic
+  - ParentMusic
   layers:
   - Default
   - TransparentFX

@@ -36,19 +36,6 @@ public class CharacterController2D : MonoBehaviour
 	private bool _canDash = true;
 	private Vector2 oldVelocity;
 
-	[Header("Walljumping")]
-	[SerializeField] private bool wallJumpEnabled = true;
-	[SerializeField] private float wallSlideSpeed = 0;
-	[SerializeField] private LayerMask m_WhatIsWall;                          // A mask determining what is ground to the character
-	[SerializeField] private Transform m_WallCheck;                           // A position marking where to check if the player is grounded.
-	const float k_WallRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool isTouchingWall;
-	private bool isWallSliding;
-	[SerializeField] private float WallJumpForce;
-	[SerializeField] private float wallJumpDirection = -1f;
-	[SerializeField] private Vector2 wallJumpAngle;
-
-	private bool wallJumping;
 
 	[Header("Events")]
 	[Space]
@@ -63,7 +50,6 @@ public class CharacterController2D : MonoBehaviour
 		canDoubleJump = true;
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		_trailRenderer = GetComponent<TrailRenderer>();
-		wallJumpAngle.Normalize();
 		//audioPlayer = AudioManager.instance;
 
 		if (OnLandEvent == null)
@@ -96,21 +82,6 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 
-		isTouchingWall = Physics2D.OverlapCircle(m_WallCheck.position, k_WallRadius, m_WhatIsWall);
-
-		if (isTouchingWall && !m_Grounded && m_Rigidbody2D.velocity.y < 0 && wallJumpEnabled)
-		{
-			isWallSliding = true;
-		}
-		else
-		{
-			isWallSliding = false;
-		}
-
-		if (isWallSliding)
-		{
-			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, Mathf.Clamp(m_Rigidbody2D.velocity.y, -wallSlideSpeed, float.MaxValue));
-		}
 	}
 
 
@@ -157,7 +128,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpForce / 50);
 			StartCoroutine(StartJumpAnimation());
 		}
-		else if (jump && canDoubleJump && doubleJumpEnabled && !isTouchingWall)
+		else if (jump && canDoubleJump && doubleJumpEnabled)
 		{
 			audioPlayer.PlaySound("Jump");
 
@@ -197,11 +168,6 @@ public class CharacterController2D : MonoBehaviour
 			_canDash = true;
 			hasDoubleJumped = false;
 			StartCoroutine(StopDashAnimation());
-		}
-
-		if (isWallSliding && jump)
-		{
-			m_Rigidbody2D.AddForce(new Vector2(WallJumpForce * wallJumpDirection * wallJumpAngle.x, WallJumpForce * wallJumpAngle.y), ForceMode2D.Impulse);
 		}
 	}
 
@@ -243,7 +209,6 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
-		wallJumpDirection *= -1;
 	}
 
 	private IEnumerator StartJumpAnimation()
