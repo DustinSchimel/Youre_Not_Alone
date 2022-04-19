@@ -111,6 +111,7 @@ public class DialogueEventsManager : MonoBehaviour
 
     private void startFirstCutscene(string[] arr)
     {
+        movement2D.flipIfFacingLeft();
         // start transition
         loader.Transition();
         // Disable controls
