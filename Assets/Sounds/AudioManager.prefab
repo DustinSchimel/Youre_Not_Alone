@@ -74,9 +74,9 @@ MonoBehaviour:
     volume: 0.15
     pitch: 1
     loop: 1
-  - name: Dash
-    clip: {fileID: 8300000, guid: a78cbce888a6b9741a338629da12c1cd, type: 3}
-    volume: 0.15
+  - name: ParentMusic
+    clip: {fileID: 8300000, guid: cf11ee47be3836d4b91f3a07d45151bf, type: 3}
+    volume: 0.1
     pitch: 1
-    loop: 0
+    loop: 1
   audioMixer: {fileID: 24300002, guid: 88613a3a72677c846a551826ee2dbf8b, type: 2}

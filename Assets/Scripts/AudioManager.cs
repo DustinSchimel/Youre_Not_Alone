@@ -119,6 +119,30 @@ public class AudioManager : MonoBehaviour
         PlaySound("CaveMusic");
     }
 
+    public void playParentMusic()
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (sounds[i].name == "BGM")
+            {
+                sounds[i].StopPlaying();
+            }
+
+            else if (sounds[i].name == "FriendMusic")
+            {
+                sounds[i].StopPlaying();
+                AudioZone.FriendMusicIsPlaying = false;
+            }
+            else if (sounds[i].name == "CaveMusic")
+            {
+                sounds[i].StopPlaying();
+                AudioZone.CaveMusicIsPlaying = false;
+            }
+        }
+
+        PlaySound("ParentMusic");
+    }
+
     public void playFriendMusic()
     {
         for (int i = 0; i < sounds.Length; i++)
