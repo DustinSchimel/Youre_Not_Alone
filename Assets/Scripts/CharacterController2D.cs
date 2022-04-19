@@ -230,4 +230,9 @@ public class CharacterController2D : MonoBehaviour
 
 		animator.SetBool("IsDashing", false);
 	}
+
+	public void EnableDoubleJump()
+    {
+		doubleJumpEnabled = true;
+    }
 }
