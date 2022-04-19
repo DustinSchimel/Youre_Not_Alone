@@ -68,7 +68,7 @@ public class DialogueMover : MonoBehaviour
         {
 
             x = character.transform.position.x;
-            y = character.transform.position.y + 6.45f;
+            y = character.transform.position.y + 6.70f; //6.45
         }
         else if (character.name.Contains("BF1"))
         {
@@ -92,8 +92,7 @@ public class DialogueMover : MonoBehaviour
         //float characterSpriteHeight = character.GetComponent<SpriteRenderer>().sprite.bounds.extents.y;
 
         // Create position with the sprite top location
-        Vector2 characterPosition = new Vector2(x,
-                                                y);
+        Vector2 characterPosition = new Vector2(x, y);
 
         // Set the DialogueBubble position to the sprite top location in Screen Space
         this.transform.position = cam.WorldToScreenPoint(characterPosition);

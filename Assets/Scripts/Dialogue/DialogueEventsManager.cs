@@ -131,14 +131,18 @@ public class DialogueEventsManager : MonoBehaviour
 
     public void setOptionCountTo3(string[] arr)
     {
+        /*
         dialogueControls = FindObjectOfType<DialogueControls>();
         dialogueControls.SetOptions(3);
+        */
     }
 
     public void setOptionCountTo2(string[] arr)
     {
+        /*
         dialogueControls = FindObjectOfType<DialogueControls>();
         dialogueControls.SetOptions(2);
+        */
     }
 
     public void disableFriendWall(string[] arr)
