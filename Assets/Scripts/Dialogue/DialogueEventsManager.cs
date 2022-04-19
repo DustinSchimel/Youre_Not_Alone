@@ -57,6 +57,8 @@ public class DialogueEventsManager : MonoBehaviour
         dr.AddCommandHandler("startFirstCutscene", startFirstCutscene);
         dr.AddCommandHandler("endFirstCutscene", endFirstCutscene);
 
+        dr.AddCommandHandler("disableMerchantWall", disableMerchantWall);
+
         // Friend stuff
         dr.AddCommandHandler("playerLied", playerLied);
         dr.AddCommandHandler("disable_friendWall", disableFriendWall);
