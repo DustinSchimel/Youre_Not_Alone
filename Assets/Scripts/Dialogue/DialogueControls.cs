@@ -55,6 +55,7 @@ public class DialogueControls : MonoBehaviour
 
     public void SetOptions(int optionCount)
     {
+        /*
         optionSize = optionCount;
 
         // Initialize the array size to the number of options
@@ -64,6 +65,7 @@ public class DialogueControls : MonoBehaviour
         {
             options[i] = dialogueUI.optionButtons[i].GetComponentInChildren<TMPro.TMP_Text>();
         }
+        */
     }
 
     public void ChangeOption(string input)
