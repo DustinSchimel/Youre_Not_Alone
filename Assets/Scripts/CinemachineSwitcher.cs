@@ -9,6 +9,7 @@ public class CinemachineSwitcher : MonoBehaviour
     public CinemachineVirtualCamera vcam1; // Zoomed out
     public CinemachineVirtualCamera vcam2; // Zoomed in
     public CinemachineVirtualCamera vcam3; // Friend cutscene camera
+    public CinemachineVirtualCamera vcam4; // Parent cutscene camera
     private int currentCamera;
 
     void Start()
@@ -24,6 +25,7 @@ public class CinemachineSwitcher : MonoBehaviour
             vcam1.Priority = 0;
             vcam2.Priority = 1;
             vcam3.Priority = 0;
+            vcam4.Priority = 0;
 
             currentCamera = 1;
         }
@@ -32,6 +34,7 @@ public class CinemachineSwitcher : MonoBehaviour
             vcam1.Priority = 1;
             vcam2.Priority = 0;
             vcam3.Priority = 0;
+            vcam4.Priority = 0;
 
             currentCamera = 0;
         }
@@ -42,6 +45,7 @@ public class CinemachineSwitcher : MonoBehaviour
         vcam1.Priority = 0;
         vcam2.Priority = 1;
         vcam3.Priority = 0;
+        vcam4.Priority = 0;
 
         currentCamera = 1;
     }
@@ -51,17 +55,28 @@ public class CinemachineSwitcher : MonoBehaviour
         vcam1.Priority = 1;
         vcam2.Priority = 0;
         vcam3.Priority = 0;
+        vcam4.Priority = 0;
 
         currentCamera = 0;
     }
 
     public void FriendCutsceneCam()
     {
-        Debug.Log("Tried to enable friend cam");
         vcam1.Priority = 0;
         vcam2.Priority = 0;
         vcam3.Priority = 1;
+        vcam4.Priority = 0;
 
         currentCamera = 2;
+    }
+
+    public void ParentCutsceneCam()
+    {
+        vcam1.Priority = 0;
+        vcam2.Priority = 0;
+        vcam3.Priority = 0;
+        vcam4.Priority = 1;
+
+        currentCamera = 3;
     }
 }

@@ -421,6 +421,7 @@ public class DialogueEventsManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
+        switcher.ParentCutsceneCam();
         Timeline_Parent_InKitchen.SetActive(true);
         movement.enableDialogueProgress();
     }
@@ -461,6 +462,7 @@ public class DialogueEventsManager : MonoBehaviour
     private void end4thMotherCutscene(string[] arr)
     {
         Timeline_Parent_DiningRoom_03.SetActive(false);
+        loader.LoadNextLevel();
     }
 
     public void enableMerchantAndBF(string[] arr)
