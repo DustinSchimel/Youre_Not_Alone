@@ -68,13 +68,19 @@ public class DialogueMover : MonoBehaviour
         {
 
             x = character.transform.position.x;
-            y = character.transform.position.y + 6.70f; //6.45
+            y = character.transform.position.y + 6.45f;
         }
         else if (character.name.Contains("BF"))
         {
 
             x = character.transform.position.x - .75f;
             y = character.transform.position.y + 2.35f;
+        }
+        else if (character.name.Contains("Parent"))
+        {
+
+            x = character.transform.position.x +.50f;
+            y = character.transform.position.y + 7.5f;
         }
         else
         {

@@ -40,6 +40,7 @@ public class DialogueEventsManager : MonoBehaviour
     public GameObject merchantWall;
     public GameObject friendWall;
     public GameObject friendWall2;
+    public GameObject motherWall;
 
     public Image merchantCupImage;
     public bool hasMerchantCup = false;
@@ -85,6 +86,9 @@ public class DialogueEventsManager : MonoBehaviour
         dr.AddCommandHandler("endSecondCutscene", endSecondCutscene);
 
         dr.AddCommandHandler("disableFriendWall2", disableFriendWall2);
+
+        // Mother stuff
+        dr.AddCommandHandler("disableMotherWall", disableMotherWall);
 
         // Everything
         dr.AddCommandHandler("setOptionCountTo3", setOptionCountTo3);
@@ -313,6 +317,11 @@ public class DialogueEventsManager : MonoBehaviour
         */
         friendWall2.SetActive(false);
         movement2D.EnableDash();
+    }
+
+    public void disableMotherWall(string[] arr)
+    {
+        motherWall.SetActive(false);
     }
 
     public void playerLied(string[] arr)
