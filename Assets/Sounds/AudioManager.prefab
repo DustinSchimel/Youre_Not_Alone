@@ -52,7 +52,7 @@ MonoBehaviour:
   - name: Jump
     clip: {fileID: 8300000, guid: c540d3e69db78e24db1a1d89e79c2224, type: 3}
     volume: 0.15
-    pitch: 1
+    pitch: 0.75
     loop: 0
   - name: BGM
     clip: {fileID: 8300000, guid: 19994303169a6b9429d1930ea88f12fe, type: 3}
