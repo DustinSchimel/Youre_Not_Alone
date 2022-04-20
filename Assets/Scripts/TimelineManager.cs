@@ -7,18 +7,19 @@ public class TimelineManager : MonoBehaviour
 {
     private bool fix = false;
     public Animator playerAnimator;
+    public AnimationClip idle;
     public RuntimeAnimatorController playerAnim;
     public PlayableDirector director;
 
     void OnEnable()
     {
         playerAnim = playerAnimator.runtimeAnimatorController;
-        playerAnimator.runtimeAnimatorController = null;
+        //playerAnimator.runtimeAnimatorController = null;
     }
 
     void OnDisable()
     {
-        playerAnim = playerAnimator.runtimeAnimatorController;
+        playerAnim = playerAnimator.runtimeAnimatorController;    
         //playerAnimator.SetBool("Animation_Sit_Idle", false);
     }
 
