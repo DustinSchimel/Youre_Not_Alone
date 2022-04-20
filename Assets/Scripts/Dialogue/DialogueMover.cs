@@ -64,11 +64,23 @@ public class DialogueMover : MonoBehaviour
             y = character.transform.position.y + 7.5f;
 
         }
+        else if (character.name.Equals("Merch5"))
+        {
+            x = character.transform.position.x + .1f;
+            y = character.transform.position.y + 7.5f;
+
+        }
         else if (character.name.Contains("Character Body"))
         {
 
             x = character.transform.position.x;
             y = character.transform.position.y + 6.45f;
+        }
+        else if (character.name.Contains("BF6"))
+        {
+
+            x = character.transform.position.x + .75f;
+            y = character.transform.position.y + 2.35f;
         }
         else if (character.name.Contains("BF"))
         {

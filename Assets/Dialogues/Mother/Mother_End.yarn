@@ -3,6 +3,8 @@ tags:
 colorID: 0
 position: 636,-276
 ---
+<<end1stMotherCutscene>>
+<<start2ndMotherCutscene>>
 **Sniff* *Sniff*
 [[DiningRoom]]
 ===
@@ -56,6 +58,9 @@ tags:
 colorID: 0
 position: 2419,-34
 ---
+<<end2ndMotherCutscene>>
+<<enableMerchantAndBF>>
+<<start3rdMotherCutscene>>
 Merch5: OHOHO Hello! Apologies, the door was wide open so I let myself in!
 [[DiningRoom07]]
 ===
@@ -134,6 +139,8 @@ tags:
 colorID: 0
 position: 5476,-46
 ---
+<<end3rdMotherCutscene>>
+<<start4thMotherCutscene>>
 Parent_Cutscene: Besides ... *AHEM* I know you two are listening in!
 [[DiningRoom16]]
 ===
@@ -160,6 +167,7 @@ colorID: 0
 position: 6454,-38
 ---
 Parent_Cutscene: *laughs* Besides C... you've got all of us!
+<<end4thMotherCutscene>>
 ===
 title: kitchenStart
 tags: 
@@ -290,10 +298,15 @@ Parent_Cutscene: Oh, welcome back C. Did you get the leek I needed?
 title: MCI_01
 tags: 
 colorID: 0
-position: -864,-668
+position: -880,-671
 ---
-Parent_Cutscene: Good, come in, help me with cooking!
-[[kitchenStart]]
+<<if checkObtainedLeak("") > 0>>
+    <<start1stMotherCutscene>>
+    Parent_Cutscene: Good, come in, help me with cooking!
+    [[kitchenStart]]
+<<else>>
+    Parent_Cutscene: I don't have time for games C...
+<<endif>>
 ===
 title: MCI_02
 tags: 

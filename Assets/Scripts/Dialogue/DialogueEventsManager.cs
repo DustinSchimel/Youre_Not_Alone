@@ -23,12 +23,14 @@ public class DialogueEventsManager : MonoBehaviour
     public GameObject merch0;
     public GameObject merch2;
     public GameObject merch3;
+    public GameObject merch5;
 
     public GameObject friend1;
     public GameObject friend2;
     public GameObject friend3;
     public GameObject friend4;
     public GameObject friend5;
+    public GameObject friend6;
 
     public GameObject timelineBall;
 
@@ -94,6 +96,18 @@ public class DialogueEventsManager : MonoBehaviour
 
         // Mother stuff
         dr.AddCommandHandler("disableMotherWall", disableMotherWall);
+
+        dr.AddCommandHandler("enableMerchantAndBF", enableMerchantAndBF);
+
+        dr.AddCommandHandler("start1stMotherCutscene", start1stMotherCutscene);
+        dr.AddCommandHandler("start2ndMotherCutscene", start2ndMotherCutscene);
+        dr.AddCommandHandler("start3rdMotherCutscene", start3rdMotherCutscene);
+        dr.AddCommandHandler("start4thMotherCutscene", start4thMotherCutscene);
+
+        dr.AddCommandHandler("end1stMotherCutscene", end1stMotherCutscene);
+        dr.AddCommandHandler("end2ndMotherCutscene", end2ndMotherCutscene);
+        dr.AddCommandHandler("end3rdMotherCutscene", end3rdMotherCutscene);
+        dr.AddCommandHandler("end4thMotherCutscene", end4thMotherCutscene);
 
         // Everything
         dr.AddCommandHandler("setOptionCountTo3", setOptionCountTo3);
@@ -390,5 +404,68 @@ public class DialogueEventsManager : MonoBehaviour
     public bool getLeak()
     {
         return hasLeak;
+    }
+
+    private void start1stMotherCutscene(string[] arr)
+    {
+        movement2D.flipIfFacingLeft();
+        // start transition
+        loader.Transition();
+        // Disable controls
+        movement.disableDialogueProgress();
+
+        StartCoroutine(delayEnableMotherCutscene1());
+    }
+
+    IEnumerator delayEnableMotherCutscene1()
+    {
+        yield return new WaitForSeconds(1f);
+
+        Timeline_Parent_InKitchen.SetActive(true);
+        movement.enableDialogueProgress();
+    }
+
+    private void end1stMotherCutscene(string[] arr)
+    {
+        Timeline_Parent_InKitchen.SetActive(false);
+    }
+
+    private void start2ndMotherCutscene(string[] arr)
+    {
+        Timeline_Parent_DiningRoom_01.SetActive(true);
+    }
+
+
+    private void end2ndMotherCutscene(string[] arr)
+    {
+        Timeline_Parent_DiningRoom_01.SetActive(false);
+    }
+
+    private void start3rdMotherCutscene(string[] arr)
+    {
+        Timeline_Parent_DiningRoom_02.SetActive(true);
+    }
+
+
+    private void end3rdMotherCutscene(string[] arr)
+    {
+        Timeline_Parent_DiningRoom_02.SetActive(false);
+    }
+
+    private void start4thMotherCutscene(string[] arr)
+    {
+        Timeline_Parent_DiningRoom_03.SetActive(true);
+    }
+
+
+    private void end4thMotherCutscene(string[] arr)
+    {
+        Timeline_Parent_DiningRoom_03.SetActive(false);
+    }
+
+    public void enableMerchantAndBF(string[] arr)
+    {
+        merch5.SetActive(true);
+        friend6.SetActive(true);
     }
 }
