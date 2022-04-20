@@ -243,4 +243,9 @@ public class CharacterController2D : MonoBehaviour
     {
 		doubleJumpEnabled = true;
     }
+
+	public void EnableDash()
+	{
+		dashEnabled = true;
+	}
 }

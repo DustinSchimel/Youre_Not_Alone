@@ -12,12 +12,13 @@ public class TimelineManager : MonoBehaviour
 
     void OnEnable()
     {
-        //playerAnim = playerAnimator.runtimeAnimatorController;
-        //playerAnimator.runtimeAnimatorController = null;
+        playerAnim = playerAnimator.runtimeAnimatorController;
+        playerAnimator.runtimeAnimatorController = null;
     }
 
     void OnDisable()
     {
+        playerAnim = playerAnimator.runtimeAnimatorController;
         //playerAnimator.SetBool("Animation_Sit_Idle", false);
     }
 

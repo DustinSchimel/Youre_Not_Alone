@@ -11,6 +11,8 @@ public class DialogueEventsManager : MonoBehaviour
     private DialogueUI2 dialogueUI;
     public DialogueControls dialogueControls;
     public GameObject Timeline_Merch;
+    public GameObject Timeline_BF_Lie;
+    public GameObject Timeline_BF_Truth;
 
     public GameObject merch;
     public GameObject merch0;
@@ -19,6 +21,11 @@ public class DialogueEventsManager : MonoBehaviour
 
     public GameObject friend1;
     public GameObject friend2;
+    public GameObject friend3;
+    public GameObject friend4;
+    public GameObject friend5;
+
+    public GameObject timelineBall;
 
     public GameObject sky;
 
@@ -30,8 +37,9 @@ public class DialogueEventsManager : MonoBehaviour
     private Camera cam;
 
     public GameObject teleporter0;
-    public GameObject friendWall;
     public GameObject merchantWall;
+    public GameObject friendWall;
+    public GameObject friendWall2;
 
     public Image merchantCupImage;
     public bool hasMerchantCup = false;
@@ -42,12 +50,16 @@ public class DialogueEventsManager : MonoBehaviour
 
     public LevelLoader loader;
 
-    public Animator animator;
+    //public Animator currentAnimator;
+    public Animator playerAnimator;
+    private CinemachineSwitcher switcher;
 
     private void Awake()
     {
+        playerAnimator = GameObject.Find("Character Body").GetComponent<Animator>();
         movement2D = FindObjectOfType<CharacterController2D>();
         dialogueUI = FindObjectOfType<DialogueUI2>();
+        switcher = FindObjectOfType<CinemachineSwitcher>();
         cam = Camera.main;
         merchantCupImage.enabled = false;
         ballImage.enabled = false;
@@ -68,6 +80,11 @@ public class DialogueEventsManager : MonoBehaviour
         // Friend stuff
         dr.AddCommandHandler("playerLied", playerLied);
         dr.AddCommandHandler("disable_friendWall", disableFriendWall);
+
+        dr.AddCommandHandler("startSecondCutscene", startSecondCutscene);
+        dr.AddCommandHandler("endSecondCutscene", endSecondCutscene);
+
+        dr.AddCommandHandler("disableFriendWall2", disableFriendWall2);
 
         // Everything
         dr.AddCommandHandler("setOptionCountTo3", setOptionCountTo3);
@@ -124,17 +141,77 @@ public class DialogueEventsManager : MonoBehaviour
         movement.enableDialogueProgress();
     }
 
+    IEnumerator delayEnableCutscene2()
+    {
+        yield return new WaitForSeconds(1f);
+
+        timelineBall.SetActive(true);
+        if (didPlayerLie)
+        {
+            Timeline_BF_Lie.SetActive(true);
+            switcher.FriendCutsceneCam();
+        }
+        else
+        {
+            Timeline_BF_Truth.SetActive(true);
+            switcher.FriendCutsceneCam();
+        }
+        movement.enableDialogueProgress();
+    }
+
     IEnumerator delayDisableCutscene1()
     {
         yield return new WaitForSeconds(1f);
 
+        /*
         animator.Rebind();
         animator.Update(0f);
+        */
         merch3.SetActive(false);
         merch2.SetActive(true);
         Timeline_Merch.SetActive(false);
         //enable controls
     }
+
+    IEnumerator delayDisableCutscene2()
+    {
+        yield return new WaitForSeconds(1f);
+
+        Timeline_BF_Lie.SetActive(false);
+        Timeline_BF_Truth.SetActive(false);
+
+        //Animator currentAnimator = GameObject.Find("Character Body").GetComponent<Animator>();
+        //currentAnimator.runtimeAnimatorController = playerAnimator.runtimeAnimatorController;
+
+        this.GetComponent<Animator>().runtimeAnimatorController = playerAnimator.runtimeAnimatorController;
+        /*
+        animator = GameObject.Find("Character Body").GetComponent<Animator>();
+        animator.Rebind();
+        animator.Update(0f);
+        */
+        timelineBall.SetActive(false);
+
+        if (didPlayerLie)
+        {
+            friend4.SetActive(false);
+            //Timeline_BF_Lie.SetActive(false);
+            switcher.ZoomOut();
+        }
+        else
+        {
+            friend3.SetActive(false);
+            //Timeline_BF_Truth.SetActive(false);
+            switcher.ZoomOut();
+        }
+
+        friend5.SetActive(true);
+        /*
+        animator = 
+        GameObject.Find("Character Body").GetComponent<Animator>() = playerAnimator;
+        */
+        //enable controls
+    }
+
 
     private void enableTeleporter0(string[] arr)
     {
@@ -154,6 +231,17 @@ public class DialogueEventsManager : MonoBehaviour
         StartCoroutine(delayEnableCutscene1());
     }
 
+    private void startSecondCutscene(string[] arr)
+    {
+        movement2D.flipIfFacingLeft();
+        // start transition
+        loader.Transition();
+        // Disable controls
+        movement.disableDialogueProgress();
+
+        StartCoroutine(delayEnableCutscene2());
+    }
+
     private void endFirstCutscene(string[] arr)
     {
         // start transition
@@ -161,6 +249,15 @@ public class DialogueEventsManager : MonoBehaviour
         // Disable controls
 
         StartCoroutine(delayDisableCutscene1());
+    }
+
+    private void endSecondCutscene(string[] arr)
+    {
+        // start transition
+        loader.Transition();
+        // Disable controls
+
+        StartCoroutine(delayDisableCutscene2());
     }
 
     public void setOptionCountTo3(string[] arr)
@@ -185,19 +282,43 @@ public class DialogueEventsManager : MonoBehaviour
         friend1.SetActive(false);
         friend2.SetActive(true);
         sky.SetActive(false);
+
+        if (didPlayerLie)
+        {
+            Debug.Log("Disabled truth NPC");
+            friend3.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Disabled lie NPC");
+            friend4.SetActive(false);
+        }
     }
 
     public void disableMerchantWall(string[] arr)
     {
+        /*
         animator.Rebind();
         animator.Update(0f);
+        */
         merchantWall.SetActive(false);
         movement2D.EnableDoubleJump();
+    }
+
+    public void disableFriendWall2(string[] arr)
+    {
+        /*
+        animator.Rebind();
+        animator.Update(0f);
+        */
+        friendWall2.SetActive(false);
+        movement2D.EnableDash();
     }
 
     public void playerLied(string[] arr)
     {
         didPlayerLie = true;
+
         Debug.Log("Player lied");
     }
 

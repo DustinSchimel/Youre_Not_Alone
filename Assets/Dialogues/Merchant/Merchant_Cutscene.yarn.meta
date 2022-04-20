@@ -11,7 +11,7 @@ ScriptedImporter:
   baseLanguageID: en-US
   stringIDs:
   - Merchant_Cutscene-Cut01-0
-  - Merchant_Cutscene-Cut02-1
+  - Merchant_Cutscene-Cut01-1
   - Merchant_Cutscene-Cut02-2
   - Merchant_Cutscene-Cut02-3
   - Merchant_Cutscene-Cut02-4
@@ -84,15 +84,14 @@ ScriptedImporter:
   - Merchant_Cutscene-Cut09-71
   - Merchant_Cutscene-Cut09-72
   - Merchant_Cutscene-Start2-73
-  - Merchant_Cutscene-Start2-74
-  - Merchant_Cutscene-Start2-75
-  - Merchant_Cutscene-Choice01-76
+  - Merchant_Cutscene-Choice01-74
+  - Merchant_Cutscene-Choice02-75
+  - Merchant_Cutscene-Choice02-76
   - Merchant_Cutscene-Choice02-77
   - Merchant_Cutscene-Choice02-78
   - Merchant_Cutscene-Choice02-79
   - Merchant_Cutscene-Choice02-80
-  - Merchant_Cutscene-Choice02-81
-  - Merchant_Cutscene-Choice02-82
+  - Merchant_Cutscene-Recut0-81
   compilationStatus: 1
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 
