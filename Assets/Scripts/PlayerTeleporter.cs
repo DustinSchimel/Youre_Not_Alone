@@ -25,11 +25,6 @@ public class PlayerTeleporter : MonoBehaviour
 
         if (collision.CompareTag("Teleporter"))
         {
-            if (tp.name == "Teleporter1")
-            {
-                controller.doubleJumpEnabled = true;
-            }
-
             var position = collision.gameObject.GetComponent<Teleporter>().GetDestination().position;
             x = position.x;
             y = position.y;

@@ -17,6 +17,8 @@ TagManager:
   - FriendMusic
   - CaveMusic
   - ParentMusic
+  - DoubleJumpMarker
+  - DashMarker
   layers:
   - Default
   - TransparentFX
