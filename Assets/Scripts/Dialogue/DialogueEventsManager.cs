@@ -14,6 +14,11 @@ public class DialogueEventsManager : MonoBehaviour
     public GameObject Timeline_BF_Lie;
     public GameObject Timeline_BF_Truth;
 
+    public GameObject Timeline_Parent_InKitchen;
+    public GameObject Timeline_Parent_DiningRoom_01;
+    public GameObject Timeline_Parent_DiningRoom_02;
+    public GameObject Timeline_Parent_DiningRoom_03;
+
     public GameObject merch;
     public GameObject merch0;
     public GameObject merch2;
