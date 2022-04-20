@@ -24,8 +24,8 @@ public class CharacterController2D : MonoBehaviour
 	public AudioManager audioPlayer;
 
 	[Header("Toggles")]
-	public bool doubleJumpEnabled = true;
-	public bool dashEnabled = true;
+	public static bool doubleJumpEnabled = false;
+	public static bool dashEnabled = false;
 
 	[Header("Dashing")]
 	[SerializeField] private float _dashingVelocity = 14f;
