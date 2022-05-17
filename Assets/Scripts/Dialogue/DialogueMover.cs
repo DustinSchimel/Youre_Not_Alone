@@ -5,6 +5,12 @@ public class DialogueMover : MonoBehaviour
 {
     private DialogueUI2 dialogueUI;
     private Camera cam;
+    bool lockedTextboxY;
+    float lastPlayerY;
+    float lockedY;
+    bool parentCutscenePlaying;
+    bool parentCutscenePlaying2;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Awake()
@@ -12,6 +18,11 @@ public class DialogueMover : MonoBehaviour
         // Retrieve references for the DialogueUI and Camera
         dialogueUI = FindObjectOfType<DialogueUI2>();
         cam = Camera.main;
+        lockedTextboxY = false;
+        lastPlayerY = 0;
+        lockedY = 0;
+        parentCutscenePlaying = false;
+        parentCutscenePlaying2 = false;
     }
 
     private void Update()
@@ -19,6 +30,19 @@ public class DialogueMover : MonoBehaviour
         // If the Camera changes view, this ensures that the Dialogue Bubble position
         // get recalculated based on the new Camera view, every frame
         SetDialogueOnTalkingCharacter();
+
+        lastPlayerY = player.transform.position.y + 6.45f;
+
+        /*
+        if (lockedTextboxY)
+        {
+            Debug.Log("Textbox is locked");
+        }
+        else
+        {
+            Debug.Log("Textbox is unlocked");
+        }
+        */
     }
 
     // Retrieve the character who's talking from the text
@@ -39,6 +63,29 @@ public class DialogueMover : MonoBehaviour
         character = GameObject.Find(name);
         // Sets the dialogue position
         SetDialoguePosition(character);
+    }
+
+    public void lockPlayerTextboxY()
+    {
+        lockedTextboxY = true;
+        lockedY = lastPlayerY;
+    }
+
+    public void unlockPlayerTextboxY()
+    {
+        lockedTextboxY = false;
+    }
+
+    public void startedParentCutscene()
+    {
+        parentCutscenePlaying = true;
+    }
+
+    public void startedParentCutscene2()
+    {
+        player.transform.localScale = new Vector3(.14f, .14f, .14f);
+        parentCutscenePlaying = false;
+        parentCutscenePlaying2 = true;
     }
 
     private void SetDialoguePosition(GameObject character)
@@ -72,9 +119,74 @@ public class DialogueMover : MonoBehaviour
         }
         else if (character.name.Contains("Character Body"))
         {
-
-            x = character.transform.position.x;
-            y = character.transform.position.y + 6.45f;
+            if (!parentCutscenePlaying)
+            {
+                if (!parentCutscenePlaying2)
+                {
+                    if (lockedTextboxY)
+                    {
+                        x = character.transform.position.x;
+                        y = lockedY;
+                    }
+                    else
+                    {
+                        if (character.transform.position.y + 6.45f > lastPlayerY)
+                        {
+                            x = character.transform.position.x;
+                            y = character.transform.position.y + 6.45f;
+                        }
+                        else
+                        {
+                            x = character.transform.position.x;
+                            y = lastPlayerY;
+                        }
+                    }
+                }
+                else
+                {
+                    //Debug.Log("Cutscene 2 is playing");
+                    if (lockedTextboxY)
+                    {
+                        x = character.transform.position.x;
+                        y = lockedY + .5f;
+                    }
+                    else
+                    {
+                        if (character.transform.position.y + 6.45f > lastPlayerY)
+                        {
+                            x = character.transform.position.x;
+                            y = character.transform.position.y + 6.45f + .5f;
+                        }
+                        else
+                        {
+                            x = character.transform.position.x;
+                            y = lastPlayerY + .5f;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //Debug.Log("Cutscene 1 is playing");
+                if (lockedTextboxY)
+                {
+                    x = character.transform.position.x;
+                    y = lockedY + .5f;
+                }
+                else
+                {
+                    if (character.transform.position.y + 6.45f > lastPlayerY)
+                    {
+                        x = character.transform.position.x;
+                        y = character.transform.position.y + 6.95f;
+                    }
+                    else
+                    {
+                        x = character.transform.position.x;
+                        y = lastPlayerY + .5f;
+                    }
+                }
+            }
         }
         else if (character.name.Contains("BF6"))
         {
@@ -90,9 +202,23 @@ public class DialogueMover : MonoBehaviour
         }
         else if (character.name.Contains("Parent"))
         {
-
             x = character.transform.position.x +.50f;
-            y = character.transform.position.y + 7.5f;
+
+            if (!parentCutscenePlaying)
+            {
+                if (parentCutscenePlaying2)
+                {
+                    y = character.transform.position.y + 8f;
+                }
+                else
+                {
+                    y = character.transform.position.y + 7.5f;
+                }
+            }
+            else
+            {
+                y = character.transform.position.y + 8f;
+            }
         }
         else
         {

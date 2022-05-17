@@ -10,16 +10,19 @@ public class TimelineManager : MonoBehaviour
     public AnimationClip idle;
     public RuntimeAnimatorController playerAnim;
     public PlayableDirector director;
+    private DialogueMover dialogueMover;
 
     void OnEnable()
     {
         playerAnim = playerAnimator.runtimeAnimatorController;
+        dialogueMover = FindObjectOfType<DialogueMover>();
         //playerAnimator.runtimeAnimatorController = null;
     }
 
     void OnDisable()
     {
-        playerAnim = playerAnimator.runtimeAnimatorController;    
+        playerAnim = playerAnimator.runtimeAnimatorController;
+        UnlockPlayerTextboxY();
         //playerAnimator.SetBool("Animation_Sit_Idle", false);
     }
 
@@ -31,5 +34,25 @@ public class TimelineManager : MonoBehaviour
             fix = true;
             playerAnimator.runtimeAnimatorController = playerAnim;
         }
+    }
+
+    public void LockPlayerTextboxY()
+    {
+        dialogueMover.lockPlayerTextboxY();
+    }
+
+    public void UnlockPlayerTextboxY()
+    {
+        dialogueMover.unlockPlayerTextboxY();
+    }
+
+    public void ParentCutscenePlaying()
+    {
+        dialogueMover.startedParentCutscene();
+    }
+
+    public void ParentCutscenePlaying2()
+    {
+        dialogueMover.startedParentCutscene2();
     }
 }
