@@ -29,6 +29,20 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
     }
 
+    public void LoadNextLevelName(string v)
+    {
+        StartCoroutine(LoadLevel(v));
+    }
+
+    IEnumerator LoadLevel(string levelName)
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelName);
+    }
+
     //Transition for Teleport
 
     public void LoadAfterTeleport()

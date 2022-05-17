@@ -1083,6 +1083,78 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""EndScreen"",
+            ""id"": ""0a4ad1fd-9d78-4e0d-a3b9-9312426601cf"",
+            ""actions"": [
+                {
+                    ""name"": ""CloseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""736ca219-9616-42cc-a067-716f809adeac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3b31019c-4c17-4555-ab3e-f789235ef3a0"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CloseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec531be7-a2e7-4085-a168-553ffd47792b"",
+                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CloseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e325f18-d5e7-40f3-ab4f-9c89ce6b2fff"",
+                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CloseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1fcdffc8-e756-4e4a-b5e2-c140a76e6b82"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""CloseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68392efc-97c6-40d8-b52f-d5ce8ba25c10"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""CloseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1137,6 +1209,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_TitleScreen_MoveUp = m_TitleScreen.FindAction("MoveUp", throwIfNotFound: true);
         m_TitleScreen_MoveDown = m_TitleScreen.FindAction("MoveDown", throwIfNotFound: true);
         m_TitleScreen_SelectOption = m_TitleScreen.FindAction("SelectOption", throwIfNotFound: true);
+        // EndScreen
+        m_EndScreen = asset.FindActionMap("EndScreen", throwIfNotFound: true);
+        m_EndScreen_CloseGame = m_EndScreen.FindAction("CloseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1444,6 +1519,39 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public TitleScreenActions @TitleScreen => new TitleScreenActions(this);
+
+    // EndScreen
+    private readonly InputActionMap m_EndScreen;
+    private IEndScreenActions m_EndScreenActionsCallbackInterface;
+    private readonly InputAction m_EndScreen_CloseGame;
+    public struct EndScreenActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public EndScreenActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CloseGame => m_Wrapper.m_EndScreen_CloseGame;
+        public InputActionMap Get() { return m_Wrapper.m_EndScreen; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EndScreenActions set) { return set.Get(); }
+        public void SetCallbacks(IEndScreenActions instance)
+        {
+            if (m_Wrapper.m_EndScreenActionsCallbackInterface != null)
+            {
+                @CloseGame.started -= m_Wrapper.m_EndScreenActionsCallbackInterface.OnCloseGame;
+                @CloseGame.performed -= m_Wrapper.m_EndScreenActionsCallbackInterface.OnCloseGame;
+                @CloseGame.canceled -= m_Wrapper.m_EndScreenActionsCallbackInterface.OnCloseGame;
+            }
+            m_Wrapper.m_EndScreenActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CloseGame.started += instance.OnCloseGame;
+                @CloseGame.performed += instance.OnCloseGame;
+                @CloseGame.canceled += instance.OnCloseGame;
+            }
+        }
+    }
+    public EndScreenActions @EndScreen => new EndScreenActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -1492,5 +1600,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnMoveUp(InputAction.CallbackContext context);
         void OnMoveDown(InputAction.CallbackContext context);
         void OnSelectOption(InputAction.CallbackContext context);
+    }
+    public interface IEndScreenActions
+    {
+        void OnCloseGame(InputAction.CallbackContext context);
     }
 }
