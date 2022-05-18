@@ -193,8 +193,8 @@ MonoBehaviour:
   - {fileID: 7000172625985826932}
   - {fileID: 4798608188302693123}
   m_Bounds:
-    m_Center: {x: -0.032918453, y: 0.08353233, z: 0}
-    m_Extent: {x: 0.76702046, y: 1.27671, z: 0}
+    m_Center: {x: -0.033055782, y: 0.08353186, z: 0}
+    m_Extent: {x: 0.76706624, y: 1.2767086, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &3372518628726775772
@@ -420,7 +420,7 @@ MonoBehaviour:
   - {fileID: 7000172625985826932}
   - {fileID: 7414188739461324282}
   m_Bounds:
-    m_Center: {x: -0.0009548664, y: 0.0007252693, z: 0}
+    m_Center: {x: -0.0010769367, y: 0.0007176399, z: 0}
     m_Extent: {x: 1.5562551, y: 3.395835, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -537,6 +537,9 @@ GameObject:
   - component: {fileID: 3580419460704076184}
   - component: {fileID: 3580419460704076186}
   - component: {fileID: 3580419460704076187}
+  - component: {fileID: 7151542509924409966}
+  - component: {fileID: 7151542509924409978}
+  - component: {fileID: 7151542509924409979}
   m_Layer: 0
   m_Name: Character Body
   m_TagString: Untagged
@@ -602,9 +605,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.3, y: 3}
+  m_Offset: {x: 0.15, y: 4.15}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
 --- !u!61 &3580419460704076197
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -618,7 +621,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15, y: 6.5}
+  m_Offset: {x: 0.15, y: 7.65}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -629,7 +632,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 5}
+  m_Size: {x: 5.84, y: 8.34}
   m_EdgeRadius: 0
 --- !u!58 &3580419460704076198
 CircleCollider2D:
@@ -820,9 +823,12 @@ MonoBehaviour:
   controller: {fileID: 3580419460704076184}
   animator: {fileID: 3580419460704076207}
   runSpeed: 40
+  loader: {fileID: 0}
   checkpointText: {fileID: 0}
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  scriptHolder: {fileID: 0}
+  startedDialogue: 0
 --- !u!114 &3580419460704076184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,20 +849,10 @@ MonoBehaviour:
     m_Bits: 31
   m_GroundCheck: {fileID: 3580419461203647534}
   animator: {fileID: 3580419460704076207}
-  doubleJumpEnabled: 1
-  dashEnabled: 1
+  audioPlayer: {fileID: 0}
   _dashingVelocity: 25
   _dashingTime: 0.3
   _dashingFloatiness: 10
-  wallJumpEnabled: 1
-  wallSlideSpeed: 4.5
-  m_WhatIsWall:
-    serializedVersion: 2
-    m_Bits: 8
-  m_WallCheck: {fileID: 3580419460429604774}
-  WallJumpForce: 18
-  wallJumpDirection: -1
-  wallJumpAngle: {x: 1.25, y: 3}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -884,6 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ed946268cd12a49803ee374345178b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loader: {fileID: 0}
 --- !u!114 &3580419460704076187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,6 +894,84 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 0}
+  audioMixer: {fileID: 0}
+  resume: {fileID: 0}
+  volume: {fileID: 0}
+  quit: {fileID: 0}
+  volumeSlider: {fileID: 0}
+--- !u!114 &7151542509924409966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949068750251504533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522b30168f61c4c42be19724f0ac07ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7151542509924409978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949068750251504533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f009b393aad656c4c8264987c8bac579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+--- !u!114 &7151542509924409979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949068750251504533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fce8ec00d568814abe16c5574b89452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dr: {fileID: 0}
+  dialogueControls: {fileID: 0}
+  Timeline_Merch: {fileID: 0}
+  Timeline_BF_Lie: {fileID: 0}
+  Timeline_BF_Truth: {fileID: 0}
+  Timeline_Parent_InKitchen: {fileID: 0}
+  Timeline_Parent_DiningRoom_01: {fileID: 0}
+  Timeline_Parent_DiningRoom_02: {fileID: 0}
+  Timeline_Parent_DiningRoom_03: {fileID: 0}
+  merch: {fileID: 0}
+  merch0: {fileID: 0}
+  merch2: {fileID: 0}
+  merch3: {fileID: 0}
+  merch5: {fileID: 0}
+  friend1: {fileID: 0}
+  friend2: {fileID: 0}
+  friend3: {fileID: 0}
+  friend4: {fileID: 0}
+  friend5: {fileID: 0}
+  friend6: {fileID: 0}
+  timelineBall: {fileID: 0}
+  sky: {fileID: 0}
+  movement: {fileID: 3580419460704076195}
+  teleporter0: {fileID: 0}
+  merchantWall: {fileID: 0}
+  friendWall: {fileID: 0}
+  friendWall2: {fileID: 0}
+  motherWall: {fileID: 0}
+  merchantCupImage: {fileID: 0}
+  hasMerchantCup: 1
+  ballImage: {fileID: 0}
+  hasBall: 0
+  leakImage: {fileID: 0}
+  hasLeak: 0
+  loader: {fileID: 0}
+  playerAnimator: {fileID: 3580419460704076207}
 --- !u!1 &6870513229828651839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,8 +1102,8 @@ MonoBehaviour:
   - {fileID: 1496732325692085490}
   - {fileID: 1381784118725649737}
   m_Bounds:
-    m_Center: {x: -0.00000017881393, y: -0.0013858676, z: 0}
-    m_Extent: {x: 0.85499984, y: 0.8586166, z: 0}
+    m_Center: {x: -0.00000017881393, y: -0.0013925433, z: 0}
+    m_Extent: {x: 0.85499984, y: 0.858608, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7517141739722404257
@@ -1161,7 +1236,7 @@ MonoBehaviour:
   - {fileID: 4376032031455027777}
   - {fileID: 4313560370502045714}
   m_Bounds:
-    m_Center: {x: 0.39531863, y: -0.2347995, z: 0}
+    m_Center: {x: 0.3952576, y: -0.23480713, z: 0}
     m_Extent: {x: 0.8136008, y: 1.1076474, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1296,8 +1371,8 @@ MonoBehaviour:
   - {fileID: 7000172625985826932}
   - {fileID: 7802171301105244656}
   m_Bounds:
-    m_Center: {x: 0.033364713, y: 0.0605067, z: 0}
-    m_Extent: {x: 0.76663524, y: 1.3024606, z: 0}
+    m_Center: {x: 0.03328842, y: 0.06049204, z: 0}
+    m_Extent: {x: 0.76658946, y: 1.302463, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &8115745157365902185
@@ -1400,8 +1475,8 @@ MonoBehaviour:
   - {fileID: 7414188739461324282}
   - {fileID: 5795283941938052269}
   m_Bounds:
-    m_Center: {x: 0.000030755997, y: 0.0022909641, z: 0}
-    m_Extent: {x: 3.2950006, y: 2.842711, z: 0}
+    m_Center: {x: 0.00000023841858, y: 0.0022900105, z: 0}
+    m_Extent: {x: 3.2950006, y: 2.84271, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &8974196942979963689

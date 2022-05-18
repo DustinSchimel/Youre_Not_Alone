@@ -58,7 +58,6 @@ public class DialogueEventsManager : MonoBehaviour
 
     public LevelLoader loader;
 
-    //public Animator currentAnimator;
     public Animator playerAnimator;
     private CinemachineSwitcher switcher;
 
@@ -193,6 +192,7 @@ public class DialogueEventsManager : MonoBehaviour
         merch3.SetActive(false);
         merch2.SetActive(true);
         Timeline_Merch.SetActive(false);
+
         //enable controls
     }
 
