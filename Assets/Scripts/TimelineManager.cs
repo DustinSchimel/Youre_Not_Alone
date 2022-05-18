@@ -45,7 +45,7 @@ public class TimelineManager : MonoBehaviour
         }
     }
 
-    void FixPlayerBones()
+    public void FixPlayerBones()
     {
         bone6.transform.rotation = Quaternion.identity;
         bone7.transform.rotation = Quaternion.identity;
