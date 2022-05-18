@@ -54,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
 
     //public AudioManager audioPlayer;
 
-
     private void Awake()
     {
         //audioPlayer.PlaySound("BGM");
