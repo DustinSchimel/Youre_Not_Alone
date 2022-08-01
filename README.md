@@ -8,7 +8,7 @@ If on GitHub, navigate to the [releases](https://github.com/Xerphy/Youre_Not_Alo
 
 ## Background
 
-This game was developed by a group of 4 students over a span of 12 weeks for class. Developed with the intent have alternate value besides just being a fun game to play.
+This game was developed by a group of 4 students over a span of 12 weeks for class. Developed with the intent to have alternative value besides just being a fun game to play.
 
 ## Team
  - Eric Romero - Artist
