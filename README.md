@@ -1,10 +1,10 @@
 # You're Not Alone
 
-## Synopsis:
+## Synopsis
 
 You're Not Alone is a game about the internal struggles people have in their daily lives and the constant struggle of coming to terms with them. You're Not Alone follows a young child whose life and personal flaws deters them from being happy. Through conversations with those around him does he know that he truly isn't alone.
 
-## Disclaimer:
+## Disclaimer
 You're Not Alone tackles one of many different backgrounds that any person may go through in their lives. Those who suffer from anxiety, depression, worries, or woes. Please know that you are valued and sometimes reaching out to a close one will help.
 
 ## Installation
