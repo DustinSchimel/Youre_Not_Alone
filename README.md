@@ -17,7 +17,7 @@ This game was developed by a group of 5 students over a span of 12 weeks for cla
 
 ## Team
  - Eric Romero - Artist
- - Erickson Nguyen - Artist
+ - [Erickson Nguyen](https://www.linkedin.com/in/erickson-nguyen-827268245/) - Artist
  - Dustin Schimel - Engineer
  - Dylan Russel - Engineer
  - Cameron Lentz - Musician
