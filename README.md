@@ -9,7 +9,7 @@ You're Not Alone tackles one of many different backgrounds that any person may g
 
 ## Installation
 
-If on GitHub, navigate to the [releases](https://github.com/Xerphy/Youre_Not_Alone/releases) page and download the latest zip (Youre_Not_Alone.zip). If on itch, you should already have it installed if you are reading this!
+If on GitHub, navigate to the [releases](https://github.com/Xerphy/Youre_Not_Alone/releases) page and download the latest zip (You're_Not_Alone.zip). If on itch, you should already have it installed if you are reading this!
 
 ## Background
 
