@@ -17,7 +17,6 @@ public class PauseMenu : MonoBehaviour
 
     public Text resume;
     public Text volume;
-    public Text quit;
 
     public Slider volumeSlider;
 
@@ -71,16 +70,6 @@ public class PauseMenu : MonoBehaviour
 
             optionSelected = 0;
         }
-        else if (optionSelected == 2)   // Quit is selected
-        {
-            // Disable quit bold
-            quit.text = quit.text.Substring(3, 4);
-
-            // Enable volume bold
-            volume.text = "<b>" + volume.text + "</b>";
-
-            optionSelected = 1;
-        }
     }
 
     public void MoveDownPause(InputAction.CallbackContext context)
@@ -96,16 +85,6 @@ public class PauseMenu : MonoBehaviour
             optionSelected = 1;
         }
         else if (optionSelected == 1)   // Volume is selected
-        {
-            // Disable volume bold
-            volume.text = volume.text.Substring(3, 6);
-
-            // Enable quit bold
-            quit.text = "<b>" + quit.text + "</b>";
-
-            optionSelected = 2;
-        }
-        else if (optionSelected == 2)   // Quit is selected
         {
             // Do nothing
         }
@@ -137,10 +116,6 @@ public class PauseMenu : MonoBehaviour
         {
             // Does nothing
         }
-        else if (optionSelected == 2)   // Quit is selected
-        {
-            QuitGame();
-        }
     }
 
     public void Resume()
@@ -148,7 +123,6 @@ public class PauseMenu : MonoBehaviour
         optionSelected = 0;
         resume.text = "<b>Resume</b>";
         volume.text = "Volume";
-        quit.text = "Quit";
 
         inputActions.PauseMenu.Disable();
         inputActions.Player.Enable();
@@ -171,10 +145,5 @@ public class PauseMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("Volume", volume);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 }

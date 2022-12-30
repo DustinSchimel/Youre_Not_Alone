@@ -176,7 +176,6 @@ MonoBehaviour:
   canvas: {fileID: 1750928825}
   loader: {fileID: 1586748643}
   play: {fileID: 1725415876}
-  quit: {fileID: 95493421}
 --- !u!1 &95493419
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 23.562992}
+  m_AnchoredPosition: {x: 0, y: 11.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537606181
@@ -666,7 +665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1598874389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -730,19 +729,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1598874391}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 91947637}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1598874391
 MonoBehaviour:
   m_ObjectHideFlags: 0
