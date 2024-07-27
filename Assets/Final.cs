@@ -6,6 +6,6 @@ public class Final : MonoBehaviour
 {
     public void QuitButton()
     {
-        Application.Quit();
+        //Application.Quit();
     }
 }
