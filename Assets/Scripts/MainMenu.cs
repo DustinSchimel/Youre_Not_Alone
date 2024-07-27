@@ -38,13 +38,7 @@ public class MainMenu : MonoBehaviour
         }
         else if (optionSelected == 1)   // Quit is selected
         {
-            // Disable quit bold
-            quit.text = quit.text.Substring(3, 4);
-
-            // Enable play bold
-            play.text = "<b>" + play.text + "</b>";
-
-            optionSelected = 0;
+            // Do nothing
         }
     }
 
@@ -52,13 +46,7 @@ public class MainMenu : MonoBehaviour
     {
         if (optionSelected == 0)    // Play is selected
         {
-            // Disable play bold
-            play.text = play.text.Substring(3, 4);
-
-            // Enable quit bold
-            quit.text = "<b>" + quit.text + "</b>";
-
-            optionSelected = 1;
+            // Do nothing
         }
         else if (optionSelected == 1)   // Quit is selected
         {
